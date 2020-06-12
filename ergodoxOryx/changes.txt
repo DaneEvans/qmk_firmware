@@ -1,6 +1,13 @@
 layout changes
 considering making shift + backspace into delete if i can. may need to be done in code  
-a lattching toggle to layer 4? (numpad and macros)
+
+
+
+
+====================================================
+R3
+a latching toggle to layer 4? - implemented with the right layer switch button
+added more git keys
 
 ====================================================
 R2

@@ -1,0 +1,44 @@
+
+MEH + N = notepad ++
+MEH + 0 = Wally, for programming the keyboard
+MEH + S = Segger embedded studio
+MEH + E = Eclipse
+MEH + P = pycharm
+MEH + G = steam
+MEH + J = Joplin
+MEH + V = vivado
+MEH + Y = Git repos directory
+MEH + 6 = git bash, although it doesn;t know where to open it - ahk apparently has a way, 
+or a 2 key combo using the context menu + 's'
+
+
+
+
+
+Windows has apparently decided that hyoer needs  to be mapped to a variety of 
+things as part of the "office" key 
+
+notably
+HYPER 		= office general selector
+HYPER + W = word
+HYPER + X = excel
+HYPER + P = powerpoint
+
+HYPER + L = LinkedIn
+
+
+
+
+
+
+ones that are a complete waste of space
+HYPER + Y = yammer
+HYPER + T = teams
+HYPER + D = onedrive
+HYPER + O = outlook
+HYPER + N = Onenote
+
+
+
+
+
