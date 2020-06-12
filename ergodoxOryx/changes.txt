@@ -1,0 +1,21 @@
+layout changes
+considering making shift + backspace into delete if i can. may need to be done in code  
+a lattching toggle to layer 4? (numpad and macros)
+
+====================================================
+R2
+
+move num pad across to the indexing key
+move  shift and control to their usual locations
+add an enter on the little finger
+add a layer switch layer
+add macros
+
+
+
+
+
+=====================================================
+R1
+
+started with the orginal plus some changes that seemed sensible
