@@ -1,6 +1,7 @@
 layout changes
 considering making shift + backspace into delete if i can. may need to be done in code  
 
+add screen brightness keys
 
 
 
