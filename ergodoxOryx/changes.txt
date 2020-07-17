@@ -1,8 +1,17 @@
 layout changes
-considering making shift + backspace into delete if i can. may need to be done in code  
 
+
+considering making shift + backspace into delete if i can. may need to be done in qmk code  
+
+
+==================================================
+R5 
+reverse backspace and delete on the thumb cluster 
+add a layer 1 toggle to \ 
+
+==================================================
+R4? 
 add screen brightness keys
-
 
 
 ====================================================
