@@ -17,7 +17,7 @@ fi
 
 if [ "$LOCAL_BRANCH" == "Corne_init" ] || [ "$NUM_CORE_CHANGES" != "0" ]; then
     echo "Making all keymaps for Corne keyboards"
-    make crkbd:all
+    make crkbd:devdev
     exit $?
 fi
 
