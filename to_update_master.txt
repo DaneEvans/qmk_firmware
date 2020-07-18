@@ -1,0 +1,10 @@
+git fetch upstream 
+git checkout master 
+git merge upstream/master 
+
+hopefully everything fast-forwards ... 
+
+
+make is setup using msys at the moment . defaults to the crkbd:devdev build. 
+so that should be fun . 
+I'm pretty sure that the qmk configurator will handle it fine ....
