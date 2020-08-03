@@ -4,6 +4,12 @@ layout changes
 considering making shift + backspace into delete if i can. may need to be done in qmk code  
 
 
+=================================================
+R6 
+added a colemak layer to 5, get to it through the layer select layer (hold print screen )
+
+
+
 ==================================================
 R5 
 reverse backspace and delete on the thumb cluster 
