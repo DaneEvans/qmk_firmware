@@ -7,21 +7,11 @@
  */
  extern keymap_config_t keymap_config;
  
- #ifdef RGBLIGHT_ENABLE
-// Following line allows macro to read current RGB settings
-extern rgblight_config_t rgblight_config;
+#if defined(RGBLIGHT_ENABLE) || defined(RGB_MATRIX_ENABLE)
+#    include "rgb.c"
 #endif
  
- enum userspace_layers {
-    _QWERTY  = 0,
-    _COLEMAK,
-    _NUM,
-    _SYMBOL,
-    _COMMAND,
-    _NUMPAD,
-    _MOVE,
-    _SWITCHER
-};
+
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -44,81 +34,85 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 
-#ifdef RGB_MATRIX_ENABLE2
-
-void suspend_power_down_keymap(void) { rgb_matrix_set_suspend_state(true); }
-
-void suspend_wakeup_init_keymap(void) { rgb_matrix_set_suspend_state(false); }
-
-void check_default_layer(uint8_t mode, uint8_t type) {
-    switch (get_highest_layer(default_layer_state)) {
-        case _QWERTY:
-            rgb_matrix_layer_helper(HSV_CYAN, mode, rgb_matrix_config.speed, type);
-            break;
-        case _COLEMAK:
-            rgb_matrix_layer_helper(HSV_MAGENTA, mode, rgb_matrix_config.speed, type);
-            break;
-			
-        case _NUM:
-            rgb_matrix_layer_helper(HSV_SPRINGGREEN, mode, rgb_matrix_config.speed, type);
-            break;
-        case _SYMBOL:
-            rgb_matrix_layer_helper(HSV_GOLDENROD, mode, rgb_matrix_config.speed, type);
-            break;
-        case _COMMAND:
-            rgb_matrix_layer_helper(HSV_CORAL, mode, rgb_matrix_config.speed, type);
-            break;
-        case _NUMPAD:
-            rgb_matrix_layer_helper(HSV_YELLOW, mode, rgb_matrix_config.speed, type);
-            break;
-        case _MOVE:
-            rgb_matrix_layer_helper(HSV_PINK, mode, rgb_matrix_config.speed, type);
-            break;
-        case _SWITCHER:
-            rgb_matrix_layer_helper(HSV_BLUE, mode, rgb_matrix_config.speed, type);
-            break;
-			
+#if defined(RGBLIGHT_ENABLE) || defined(RGB_MATRIX_ENABLE)
+layer_state_t layer_state_set_user(layer_state_t state) {
+    /* For any layer other than default, save current RGB state and switch to layer-based RGB */
+    if (layer_state_cmp(state, 0)) {
+        restore_rgb_config();
+    } else {
+        uint8_t layer = get_highest_layer(state);
+        if (layer_state_cmp(layer_state, 0)) save_rgb_config();
+        rgb_by_layer(layer);
     }
-}
-
-void rgb_matrix_indicators_user(void) {
-    if (userspace_config.rgb_layer_change &&
-#    ifdef RGB_DISABLE_WHEN_USB_SUSPENDED
-        !g_suspend_state &&
-#    endif
-#    if defined(RGBLIGHT_ENABLE)
-        (!rgblight_config.enable && rgb_matrix_config.enable)
-#    else
-        rgb_matrix_config.enable
-#    endif
-    ) {
-        switch (get_highest_layer(layer_state)) {
-            case _NUM:
-                rgb_matrix_layer_helper(HSV_ORANGE, 0, rgb_matrix_config.speed, LED_FLAG_UNDERGLOW);
-                break;
-            case _SYMBOL:
-                rgb_matrix_layer_helper(HSV_RED, 0, rgb_matrix_config.speed, LED_FLAG_UNDERGLOW);
-                break;
-            case _COMMAND:
-                rgb_matrix_layer_helper(HSV_YELLOW, 0, rgb_matrix_config.speed, LED_FLAG_UNDERGLOW);
-                break;
-            case _NUMPAD:
-                rgb_matrix_layer_helper(HSV_GREEN, 0, rgb_matrix_config.speed, LED_FLAG_UNDERGLOW);
-                break;
-            case _MOVE:
-                rgb_matrix_layer_helper(HSV_RED, 0, rgb_matrix_config.speed, LED_FLAG_UNDERGLOW);
-                break;
-			case _SWITCHER:
-                rgb_matrix_layer_helper(HSV_TEAL, 0, rgb_matrix_config.speed, LED_FLAG_UNDERGLOW);
-                break;	
-				
-            default: {
-                check_default_layer(IS_LAYER_ON(_SYMBOL), LED_FLAG_UNDERGLOW);
-                break;
-            }
-        }
-        check_default_layer(0, LED_FLAG_MODIFIER);
-    }
+    return state;
 }
 #endif
 
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+#ifdef OLED_DRIVER_ENABLE
+    if (record->event.pressed) {
+        oled_timer = timer_read();
+        add_keylog(keycode);
+    }
+#endif
+
+    switch (keycode) {
+		/*
+        case LOWER:
+            if (record->event.pressed) {
+                layer_on(_LOWER);
+            } else {
+                layer_off(_LOWER);
+            }
+            return false;
+        case RAISE:
+            if (record->event.pressed) {
+                layer_on(_RAISE);
+            } else {
+                layer_off(_RAISE);
+            }
+            return false;
+        case ADJUST:
+            if (record->event.pressed) {
+                layer_on(_ADJUST);
+            } else {
+                layer_off(_ADJUST);
+            }
+            return false;
+			*/
+#if defined(RGBLIGHT_ENABLE) || defined(RGB_MATRIX_ENABLE)
+        case RGB_MOD:
+        case RGB_TOG:
+        case RGB_HUI:
+        case RGB_HUD:
+        case RGB_SAI:
+        case RGB_SAD:
+        case RGB_VAI:
+        case RGB_VAD:
+        case RGB_SPI:
+        case RGB_SPD:
+            /* Override layer-based RGB and resume RGB effect to be able to preview changes */
+            if (record->event.pressed) {
+                restore_rgb_config();
+                process_rgb(keycode, record);
+                save_rgb_config();
+            }
+            return false;
+		/*
+        case RGBRST:
+            if (record->event.pressed) {
+#    ifdef RGBLIGHT_ENABLE
+                eeconfig_update_rgblight_default();
+                rgblight_enable();
+#    elif RGB_MATRIX_ENABLE
+                eeconfig_update_rgb_matrix_default();
+                rgb_matrix_enable();
+#    endif
+                save_rgb_config();
+            }
+            return false;
+			*/
+#endif
+    }
+    return true;
+}
