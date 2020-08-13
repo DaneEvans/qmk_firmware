@@ -66,9 +66,13 @@ const rgblight_segment_t PROGMEM layer_command_lights[] = RGBLIGHT_LAYER_SEGMENT
 //_NUMPAD
 //havent worked out how to do each side individually either 
 const rgblight_segment_t PROGMEM layer_numpad_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 18, HSV_ORANGE} // the numbering appears to be following LED hnumbers, but offset. 
-	// this does all of the thumb keys 
+{0, 10, HSV_ORANGE}
 );
+const rgblight_segment_t PROGMEM layer_numpad_rh_lights[] = RGBLIGHT_LAYER_SEGMENTS(
+	{0, 13, HSV_ORANGE},
+    {15, 3, HSV_ORANGE}
+);
+
 // _MOVE,
 // Light on inner column and underglow 
 const rgblight_segment_t PROGMEM layer_move_lights[] = RGBLIGHT_LAYER_SEGMENTS(
@@ -91,6 +95,7 @@ const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
 	layer_symbol_lights,
     layer_command_lights,       
 	layer_numpad_lights, 
+	layer_numpad_rh_lights,
 	layer_move_lights,
 	layer_switcher_lights  // Overrides other layers
 );
@@ -140,8 +145,10 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 	rgblight_set_layer_state(2, layer_state_cmp(state, _SYM));
 	rgblight_set_layer_state(3, layer_state_cmp(state, _COMMAND));
 	rgblight_set_layer_state(4, layer_state_cmp(state, _NUMPAD));
-	rgblight_set_layer_state(5, layer_state_cmp(state, _MOVE));
-	rgblight_set_layer_state(6, layer_state_cmp(state, _SWITCH));
+	if (!has_usb())
+		rgblight_set_layer_state(5, layer_state_cmp(state, _NUMPAD));
+	rgblight_set_layer_state(6, layer_state_cmp(state, _MOVE));
+	rgblight_set_layer_state(7, layer_state_cmp(state, _SWITCH));
     return state;
 }
 
