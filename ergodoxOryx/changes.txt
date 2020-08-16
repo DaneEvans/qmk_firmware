@@ -1,0 +1,44 @@
+layout changes
+
+
+considering making shift + backspace into delete if i can. may need to be done in qmk code  
+
+
+=================================================
+R6 
+added a colemak layer to 5, get to it through the layer select layer (hold print screen )
+
+
+
+==================================================
+R5 
+reverse backspace and delete on the thumb cluster 
+add a layer 1 toggle to \ 
+
+==================================================
+R4? 
+add screen brightness keys
+
+
+====================================================
+R3
+a latching toggle to layer 4? - implemented with the right layer switch button
+added more git keys
+
+====================================================
+R2
+
+move num pad across to the indexing key
+move  shift and control to their usual locations
+add an enter on the little finger
+add a layer switch layer
+add macros
+
+
+
+
+
+=====================================================
+R1
+
+started with the orginal plus some changes that seemed sensible
