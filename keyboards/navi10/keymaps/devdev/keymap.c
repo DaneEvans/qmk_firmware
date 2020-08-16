@@ -52,7 +52,7 @@ int cur_dance(qk_tap_dance_state_t *state);
 void tk_finished(qk_tap_dance_state_t *state, void *user_data);
 void tk_reset(qk_tap_dance_state_t *state, void *user_data);
 
-
+// define the macros in here 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
 	// open git bash here 	
@@ -91,7 +91,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	// git commit 	
     case M_G_COMM: // git commit 
         if (record->event.pressed) {
-           SEND_STRING("git commit ");
+           SEND_STRING("git commit -m ' ");
         }
         break;
     }
