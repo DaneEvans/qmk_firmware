@@ -68,7 +68,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case M_G_PUSH:
         if (record->event.pressed) {
             // when keycode M_G_PUSH is pressed
-            SEND_STRING("git push");
+            SEND_STRING("git push"SS_TAP(X_ENTER));
         } else {
             // when keycode M_G_PUSH is released
         }
@@ -77,7 +77,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	// git pull 
     case M_G_PULL:
         if (record->event.pressed) {
-           SEND_STRING("git pull");
+           SEND_STRING("git pull"SS_TAP(X_ENTER));
         }
         break;
 		
@@ -200,5 +200,5 @@ void tk_reset(qk_tap_dance_state_t *state, void *user_data){
 
 //associate the tap dance key with its functionality
 qk_tap_dance_action_t tap_dance_actions[] = {
-    [TAPPY_KEY] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, tk_finished, tk_reset, 275)
+    [TAPPY_KEY] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, tk_finished, tk_reset, 50)
 };
