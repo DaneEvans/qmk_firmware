@@ -124,13 +124,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                  KC_TRNS,   M_G_PUSH,    M_G_ADD, 
                  M_G_HERE,   M_G_PULL,    M_G_COMM,
                  
-                            KC_SPC,
-                 KC_MRWD,   KC_MPLY,    KC_MFFD),	
+                            KC_UP,
+                 KC_LEFT,   KC_DOWN,    KC_RIGHT),
 		
 	// media function layer, toggled on a single tap
     [_ML1] = LAYOUT(
-                 KC_TRNS,   KC_TRNS,    KC_VOLU, 
-                 KC_MUTE,   KC_TRNS,    KC_VOLD,
+                 KC_TRNS,   KC_BSPC,    KC_VOLU, 
+                 KC_MUTE,   KC_ENTER,    KC_VOLD,
                  
                             KC_SPC,
                  KC_MRWD,   KC_MPLY,    KC_MFFD),
