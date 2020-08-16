@@ -121,8 +121,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 				 
 	// git function layer, not turned on			 
     [_FN0] = LAYOUT(
-                 KC_TRANS,   M_G_PUSH,    M_G_ADD, 
-                 M_G_HERE,   M_G_PULL,    M_G_COM,
+                 KC_TRNS,   M_G_PUSH,    M_G_ADD, 
+                 M_G_HERE,   M_G_PULL,    M_G_COMM,
                  
                             KC_SPC,
                  KC_MRWD,   KC_MPLY,    KC_MFFD),	
