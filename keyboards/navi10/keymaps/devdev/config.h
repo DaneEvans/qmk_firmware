@@ -23,7 +23,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define TAPPING_TERM 100
 
 #ifdef RGBLIGHT_ENABLE
-	#define RGB_DI_PIN D3
-
-	#define RGBLED_NUM 1
+    #define RGB_DI_PIN D3
+    #define RGBLED_NUM 1
+	
+    #define RGBLIGHT_LIMIT_VAL 120
+    #define RGBLIGHT_HUE_STEP 10
+    #define RGBLIGHT_SAT_STEP 17
+    #define RGBLIGHT_VAL_STEP 17
+	
 #endif

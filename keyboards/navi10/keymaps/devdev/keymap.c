@@ -20,6 +20,18 @@
 #define _FN0    1
 #define _ML1    2
 
+#define HS_RED  	0,255 
+#define HS_WHITE 	0, 0
+#define HS_ORANGE  28, 255
+#define HS_GREEN   85, 255
+#define HS_TURQUOISE 123, 90
+#define HS_CYAN    128, 255
+#define HS_AZURE   132, 102
+#define HS_BLUE    170, 255
+#define HS_PURPLE  191, 255
+#define HS_MAGENTA 213, 255
+
+
 //create the tap type
 typedef struct {
     bool is_press_action;
@@ -41,8 +53,8 @@ enum custom_keycodes { // git macros
     M_G_HERE = SAFE_RANGE,
     M_G_PUSH,
     M_G_PULL,
-	M_G_ADD, 
-	M_G_COMM 
+    M_G_ADD, 
+    M_G_COMM 
 };
 
 //function to handle all the tap dances
@@ -124,8 +136,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                  KC_TRNS,   M_G_PUSH,    M_G_ADD, 
                  M_G_HERE,   M_G_PULL,    M_G_COMM,
                  
-                            KC_UP,
-                 KC_LEFT,   KC_DOWN,    KC_RIGHT),
+                            RGB_VAI,
+                 RGB_TOG,   RGB_VAD,    RGB_MOD),
 		
 	// media function layer, toggled on a single tap
     [_ML1] = LAYOUT(
@@ -163,6 +175,7 @@ static tap tk_tap_state = {
 //functions that control what our tap dance key does
 void tk_finished(qk_tap_dance_state_t *state, void *user_data){
     tk_tap_state.state = cur_dance(state);
+	uint8_t val = rgblight_get_val();
     switch(tk_tap_state.state){
         case SINGLE_TAP:
             //send desired key when tapped:
@@ -173,21 +186,21 @@ void tk_finished(qk_tap_dance_state_t *state, void *user_data){
                 //turn off the indicator LED
                 //set LED HI to turn it off
                 writePinHigh(INDICATOR_LED);
-				rgblight_setrgb (RGB_ORANGE);
+				rgblight_sethsv_noeeprom(HS_ORANGE, val);
             } else {
                 //turn on the media layer
                 layer_on(_ML1);
                 //turn on the indicator LED
                 //set LED pin to LOW to turn it on
                 writePinLow(INDICATOR_LED);
-				rgblight_setrgb (RGB_GREEN);
+				rgblight_sethsv_noeeprom(HS_GREEN, val);
             }
             break;
         case SINGLE_HOLD:
             //set to desired layer when held:
             //setting to the function layer
             layer_on(_FN0);
-			rgblight_setrgb (RGB_BLUE);
+			rgblight_sethsv_noeeprom(HS_BLUE, val);
             break;
     }
 }

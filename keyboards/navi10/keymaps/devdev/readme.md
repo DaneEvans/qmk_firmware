@@ -9,3 +9,7 @@ This keymap keeps a basic Navigation Cluster layout, but utilizes the Insert key
 - Tap Insert Once -> Media Layer (Tap again to leave): 
   * Has mappings for Audio control on MacOS using the arrow keys, PgUp/PgDn, and Delete.
   * Lights up the Central 3mm indicator LED.
+
+
+- added an rgb  stri0p for layer identification 
+
