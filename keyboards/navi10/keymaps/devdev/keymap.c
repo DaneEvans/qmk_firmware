@@ -173,18 +173,21 @@ void tk_finished(qk_tap_dance_state_t *state, void *user_data){
                 //turn off the indicator LED
                 //set LED HI to turn it off
                 writePinHigh(INDICATOR_LED);
+				rgblight_setrgb (RGB_ORANGE);
             } else {
                 //turn on the media layer
                 layer_on(_ML1);
                 //turn on the indicator LED
                 //set LED pin to LOW to turn it on
                 writePinLow(INDICATOR_LED);
+				rgblight_setrgb (RGB_GREEN);
             }
             break;
         case SINGLE_HOLD:
             //set to desired layer when held:
             //setting to the function layer
             layer_on(_FN0);
+			rgblight_setrgb (RGB_BLUE);
             break;
     }
 }
