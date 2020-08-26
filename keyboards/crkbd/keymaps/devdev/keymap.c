@@ -87,11 +87,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	// numpad 
 	[_NUMPAD] = LAYOUT( \
 	//,-----------------------------------------------------.                    ,-----------------------------------------------------.
-	LT(0,KC_NO),   KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_NO, 					     KC_P7,   KC_P8,   KC_P9,   KC_NO,   KC_NO, KC_BSPC, \
+	LT(0,KC_NO),   KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_NO, 					     KC_NO,   KC_P7,   KC_P8,   KC_P9,   KC_NO, KC_BSPC, \
 	//|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-	      KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, 						 KC_P4,   KC_P5,   KC_P6,   KC_NO,   KC_NO,   KC_NO, \
+	      KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, 						 KC_NO,   KC_P4,   KC_P5,   KC_P6,   KC_NO,   KC_NO, \
 	//|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|	  
-		  KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, 						 KC_P1,   KC_P2,   KC_P3,   KC_NO,   KC_NO,   KC_NO, \
+		  KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, 						 KC_NO,   KC_P1,   KC_P2,   KC_P3,   KC_NO,   KC_NO, \
 	//|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|		  
 											  OSM(MOD_MEH),   KC_NO,   KC_NO,     KC_ENT,   KC_P0,  KC_PDOT \
 										//`--------------------------'  `--------------------------'
@@ -157,8 +157,10 @@ const rgblight_segment_t PROGMEM layer_numpad_lights[] = RGBLIGHT_LAYER_SEGMENTS
 {0, 10, HSV_ORANGE}
 );
 const rgblight_segment_t PROGMEM layer_numpad_rh_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-	{0, 13, HSV_ORANGE},
-    {15, 3, HSV_ORANGE}
+	{0, 10, HSV_ORANGE},
+	{10, 3, HSV_BLUE},
+    {15, 3, HSV_BLUE},
+	{18, 3, HSV_BLUE}
 );
 
 // _MOVE,
