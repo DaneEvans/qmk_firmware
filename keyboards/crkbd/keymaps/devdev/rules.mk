@@ -13,3 +13,4 @@ SRC +=  ./lib/glcdfont.c \
 RGBLIGHT_ENABLE = yes
 #RGB_MATRIX_ENABLE = WS2812
 EXTRAKEY_ENABLE            = yes # Audio control and System control(+450)
+MOUSEKEY_ENABLE = yes
