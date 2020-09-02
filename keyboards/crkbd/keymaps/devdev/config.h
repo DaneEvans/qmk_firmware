@@ -29,7 +29,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define EE_HANDS
 
 #define SSD1306OLED
-
 #define USE_SERIAL_PD2
 
 #define TAPPING_FORCE_HOLD
@@ -50,9 +49,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	#define RGBLIGHT_EFFECT_KNIGHT
 	//#define RGBLIGHT_EFFECT_CHRISTMAS
 	//#define RGBLIGHT_EFFECT_STATIC_GRADIENT
-	#define RGBLIGHT_EFFECT_RGB_TEST
+	//#define RGBLIGHT_EFFECT_RGB_TEST
 	//#define RGBLIGHT_EFFECT_ALTERNATING
-	#define RGBLIGHT_EFFECT_TWINKLE
+	//#define RGBLIGHT_EFFECT_TWINKLE
 	
     //#define RGBLED_NUM 54
 	//#define RGBLED_SPLIT 27
