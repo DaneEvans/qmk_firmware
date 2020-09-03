@@ -10,8 +10,10 @@
 char layer_state_str[24];
  
   enum userspace_layers {
+    _DEFAULTS = 0,
     _QWERTY  = 0,
     _COLEMAK,
+    
     _NUM,
     _SYM,
     _COMMAND,
@@ -249,7 +251,9 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 	*/
 	//rgblight_setrgb (0x00,  0x00, 0xFF);
 	// these work, but don't persist 
-	rgblight_set_layer_state(0, layer_state_cmp(state, _COLEMAK));//layer_state_cmp(state, 1));
+	rgblight_set_layer_state(0, layer_state_cmp(state, _DEFAULTS) && layer_state_cmp(default_layer_state,_COLEMAK));
+    
+    //layer_state_cmp(state, 1));
 	rgblight_set_layer_state(1, layer_state_cmp(state, _NUM));
 	rgblight_set_layer_state(2, layer_state_cmp(state, _SYM));
 	rgblight_set_layer_state(3, layer_state_cmp(state, _COMMAND));
@@ -290,11 +294,20 @@ const char *read_mode_icon(bool swap);
 const char *read_layer_state(void) {
   switch (get_highest_layer(layer_state))
   {
-  case _QWERTY:
-    snprintf(layer_state_str, sizeof(layer_state_str), "Layer: QWERTY");
-    break;
-  case _COLEMAK:
-    snprintf(layer_state_str, sizeof(layer_state_str), "Layer: COLEMAK");
+  case _DEFAULTS: // default layers 
+    switch(biton32(default_layer_state))
+    {
+      case _QWERTY:
+        snprintf(layer_state_str, sizeof(layer_state_str), "Layer: QWERTY");
+        break;
+      case _COLEMAK:
+        snprintf(layer_state_str, sizeof(layer_state_str), "Layer: COLEMAK");
+        break;    
+        
+     default: // either a new default, or the board just started up 
+        snprintf(layer_state_str, sizeof(layer_state_str), "Default Layer: %ld ", default_layer_state);
+        break;
+    }
     break;
   case _NUM:
     snprintf(layer_state_str, sizeof(layer_state_str), "Layer: Numbers");
@@ -317,7 +330,6 @@ const char *read_layer_state(void) {
   default:
     snprintf(layer_state_str, sizeof(layer_state_str), "Layer: Undef-%ld", layer_state);
   }
-
   return layer_state_str;
 }
 
