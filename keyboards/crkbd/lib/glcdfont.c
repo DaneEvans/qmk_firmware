@@ -234,6 +234,8 @@ const unsigned char font[] PROGMEM = {
 #endif
 
 #ifdef CUSTOM_FONT
+// use https://joric.github.io/qle/ to generate these. 
+// You can copy the image into the logo section, then copy the byte array out of the font one .
 const unsigned char  font[] PROGMEM= {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x3E, 0x5B, 0x4F, 0x5B, 0x3E, 0x00,
