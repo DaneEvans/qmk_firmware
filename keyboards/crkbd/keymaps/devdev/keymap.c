@@ -54,9 +54,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	//,-----------------------------------------------------.                    ,-----------------------------------------------------.
 	     KC_ESC,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5, 					      KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_BSPC,  \
 	//|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-	    KC_LCTL,   KC_NO,   KC_NO,   KC_NO,   KC_WH_U,   KC_PGUP, 				   KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT,   KC_NO,  KC_DEL,  \
+	    KC_TRNS,   KC_NO,   KC_NO,   KC_NO,   KC_WH_U,   KC_PGUP, 				   KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT,   KC_NO,  KC_DEL,  \
 	//|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-		KC_LSFT,   KC_NO,   KC_NO,   KC_NO,   KC_WH_D,   KC_PGDN,					     KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,  \
+		KC_TRNS,   KC_NO,   KC_NO,   KC_NO,   KC_WH_D,   KC_PGDN,					     KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,  \
 	//|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
 											KC_LGUI, KC_TRNS,  KC_SPC,     KC_ENT,   MO(4), KC_RALT  \
 										//`--------------------------'  `--------------------------'
@@ -67,9 +67,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	//,-----------------------------------------------------.                    ,-----------------------------------------------------.
 	     KC_ESC, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC, 					   KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC, \
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-	    KC_LCTL,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, 					   KC_MINS,  KC_EQL, KC_LCBR, KC_RCBR, KC_PIPE, KC_GRV,  \
+	    KC_TRNS,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, 					   KC_MINS,  KC_EQL, KC_LCBR, KC_RCBR, KC_PIPE, KC_GRV,  \
 	//|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-		KC_LSFT,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, 					   KC_UNDS, KC_PLUS, KC_LBRC, KC_RBRC, KC_BSLS, KC_TILD, \
+		KC_TRNS,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, 					   KC_UNDS, KC_PLUS, KC_LBRC, KC_RBRC, KC_BSLS, KC_TILD, \
 	//|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
 											KC_LGUI,   MO(4),  KC_SPC,     KC_ENT, KC_TRNS, KC_RALT    \
 										//`--------------------------'  `--------------------------'
@@ -208,9 +208,6 @@ void matrix_scan_user(void) {
 	#ifdef SSD1306OLED
 		iota_gfx_task();
     #endif
-	
-  //rgblight_set_layer_state(0, layer_state_cmp(default_layer_state, _COLEMAK));
-  //rgblight_set_layer_state(0, layer_state_cmp(default_layer_state, 1));
 }
 
 void matrix_init_user(void) {
@@ -224,31 +221,8 @@ void matrix_init_user(void) {
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-    // Both layers will light up if both kb layers are active
-	/*
-	switch (get_highest_layer(state)) {
-		case 1: // colemak 
-			//rgblight_setrgb (0xFF,  0x00, 0x00);
-			rgblight_set_layer_state(0, 1);
-			break;
-		case 4: // commands 
-			//rgblight_setrgb (0x00,  0x00, 0xff);
-			rgblight_set_layer_state(1, 1);
-			break;	
-		case 5: // numpad 
-			//rgblight_setrgb (0x00,  0x00, 0xff);
-			rgblight_set_layer_state(2, 1);
-			break;	
-		case 7: // switcher  
-			//rgblight_setrgb (0x00,  0xFF, 0x00);
-			rgblight_set_layer_state(3, 1);
-			break;	
-		default:
-			break;
-	}				
-	*/
 	//rgblight_setrgb (0x00,  0x00, 0xFF);
-	// these work, but don't persist 
+	
 	rgblight_set_layer_state(0, layer_state_cmp(state, _COLEMAK));//layer_state_cmp(state, 1));
 	rgblight_set_layer_state(1, layer_state_cmp(state, _NUM));
 	rgblight_set_layer_state(2, layer_state_cmp(state, _SYM));
