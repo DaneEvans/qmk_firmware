@@ -12,4 +12,5 @@ This keymap keeps a basic Navigation Cluster layout, but utilizes the Insert key
 
 
 - added an rgb  stri0p for layer identification 
-
+ 
+ added an additional few layers, and have tappy key working for single, doublke and triple tap. 

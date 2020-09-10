@@ -17,8 +17,12 @@
 
 #define INDICATOR_LED   B5
 
-#define _FN0    1
+
 #define _ML1    2
+#define _FN2    3
+#define _PR3    4
+#define _GI4    4
+
 
 #define HS_RED  	0,255 
 #define HS_WHITE 	0, 0
@@ -40,8 +44,11 @@ typedef struct {
 
 //tap dance states
 enum {
+    // uses https://beta.docs.qmk.fm/using-qmk/software-features/feature_tap_dance
     SINGLE_TAP = 1,
     SINGLE_HOLD = 2,
+    DOUBLE_TAP = 3,
+    TRIPLE_TAP = 4, 
 };
 
 //tap dance keys
@@ -121,24 +128,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                             KC_UP,
                  KC_LEFT,   KC_DOWN,    KC_RIGHT),
 	
-	// function layer  Hold to get here
-	/*
-    [_FN0] = LAYOUT(
-                 KC_TRNS,   KC_PAUS,    KC_VOLU,
-                 KC_ENTER,  KC_SLCK,    KC_VOLD,
-                 
-                            KC_TRNS,
-                 KC_TRNS,   KC_TRNS,    KC_TRNS),
-	*/
-				 
-	// git function layer, not turned on			 
-    [_FN0] = LAYOUT(
-                 KC_TRNS,   M_G_PUSH,    M_G_ADD, 
-                 M_G_HERE,   M_G_PULL,    M_G_COMM,
-                 
-                            RGB_VAI,
-                 RGB_TOG,   RGB_VAD,    RGB_MOD),
-		
 	// media function layer, toggled on a single tap
     [_ML1] = LAYOUT(
                  KC_TRNS,   KC_BSPC,    KC_VOLU, 
@@ -146,24 +135,63 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                  
                             KC_SPC,
                  KC_MRWD,   KC_MPLY,    KC_MFFD),
+                 
+    // F keys, double tap to get here    
+    [_FN2] = LAYOUT( 
+                 TO(0),     KC_F3,    KC_F5, 
+                 KC_F2,     KC_F4,    KC_F6,
+                 
+                            KC_F7,
+                 KC_F9,     KC_F8,    KC_F10),
 				 
-			 
+    // programming, triple tap to get here      
+    [_PR3] = LAYOUT(
+                 TO(0),     A(KC_F7), S(KC_F10),    //atmel, segger, pycharm 
+                 KC_F2,     KC_F4,    S(KC_F9),
+                 
+                            KC_UP,
+                 KC_LEFT,   KC_DOWN,    KC_RIGHT),
+
+	// git function layer, hold to get here		 
+    [_GI4] = LAYOUT(
+                 KC_TRNS,   M_G_PUSH,    M_G_ADD, 
+                 M_G_HERE,   M_G_PULL,    M_G_COMM,
+                 
+                            RGB_VAI,
+                 RGB_TOG,   RGB_VAD,    RGB_MOD),
+		
+
+                 
 };
 
 //determine the current tap dance state
 int cur_dance (qk_tap_dance_state_t *state){
-    if(state->count == 1){
+    if(state->count == 1)
+    {
         //if a tap was registered
-        if(!state->pressed){
+        if(!state->pressed)
+        {
             //if not still pressed, then was a single tap
             return SINGLE_TAP;
-        } else {
+        } else 
+        {
             //if still pressed/held down, then it's a single hold
             return SINGLE_HOLD;
         }
-    } else {
+    } 
+   else if (state->count == 2)
+   {
+       return DOUBLE_TAP;
+   }
+   
+   else if (state->count == 3) 
+   {
+       return TRIPLE_TAP;
+   }
+   else 
+   {
         return 8;
-    }
+   }
 }
 
 //initialize the tap structure for the tap key
@@ -183,24 +211,35 @@ void tk_finished(qk_tap_dance_state_t *state, void *user_data){
             if(layer_state_is(_ML1)){
                 //if already active, toggle it to off
                 layer_off(_ML1);
-                //turn off the indicator LED
-                //set LED HI to turn it off
-                writePinHigh(INDICATOR_LED);
-				rgblight_sethsv_noeeprom(HS_ORANGE, val);
+                rgblight_sethsv(HS_PURPLE, val);
             } else {
                 //turn on the media layer
                 layer_on(_ML1);
-                //turn on the indicator LED
-                //set LED pin to LOW to turn it on
-                writePinLow(INDICATOR_LED);
-				rgblight_sethsv_noeeprom(HS_GREEN, val);
+                rgblight_sethsv_at(HS_RED, 0, 0);
+                rgblight_sethsv_at(HS_GREEN, 0, 1);
+                rgblight_sethsv_at(HS_BLUE, val, 2);
             }
+            break;
+
+        case DOUBLE_TAP:
+            layer_on(_FN2);
+            rgblight_sethsv_at(HS_RED, 0, 0);
+            rgblight_sethsv_at(HS_GREEN, val, 1);
+            rgblight_sethsv_at(HS_BLUE, 0, 2);
+            break;
+        case TRIPLE_TAP:
+            layer_on(_PR3);
+            rgblight_sethsv_at(HS_RED, 0, 0);
+            rgblight_sethsv_at(HS_GREEN, val, 1);
+            rgblight_sethsv_at(HS_BLUE, val, 2);
             break;
         case SINGLE_HOLD:
             //set to desired layer when held:
             //setting to the function layer
-            layer_on(_FN0);
-			rgblight_sethsv_noeeprom(HS_BLUE, val);
+            layer_on(_GI4);
+            rgblight_sethsv_at(HS_RED, val, 0);
+            rgblight_sethsv_at(HS_GREEN, val, 1);
+            rgblight_sethsv_at(HS_BLUE, val, 2);
             break;
     }
 }
@@ -208,7 +247,9 @@ void tk_finished(qk_tap_dance_state_t *state, void *user_data){
 void tk_reset(qk_tap_dance_state_t *state, void *user_data){
     //if held and released, leave the layer
     if(tk_tap_state.state == SINGLE_HOLD){
-        layer_off(_FN0);
+        layer_off(_GI4);
+	uint8_t val = rgblight_get_val();
+        rgblight_sethsv(HS_PURPLE, val);
     }
     //reset the state
     tk_tap_state.state = 0; 

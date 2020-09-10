@@ -20,11 +20,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #undef DEBOUNCE
 #define DEBOUNCE 1
 
-#define TAPPING_TERM 100
+#define TAPPING_TERM 220
 
 #ifdef RGBLIGHT_ENABLE
     #define RGB_DI_PIN D3
-    #define RGBLED_NUM 1
+    #define RGBLED_NUM 3
 	
     #define RGBLIGHT_LIMIT_VAL 120
     #define RGBLIGHT_HUE_STEP 10
