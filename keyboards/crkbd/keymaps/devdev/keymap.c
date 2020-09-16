@@ -11,7 +11,7 @@ char layer_state_str[24];
  
   enum userspace_layers {
     _DEFAULTS = 0,
-	_COLEMAK - 0,
+	_COLEMAK = 0,
     _QWERTY,
     _NUM,
     _SYM,
