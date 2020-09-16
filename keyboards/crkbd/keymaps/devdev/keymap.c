@@ -189,7 +189,7 @@ const rgblight_segment_t PROGMEM layer_switcher_lights[] = RGBLIGHT_LAYER_SEGMEN
 
 // Now define the array of layers. Later layers take precedence
 const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
-    layer_colemak_lights, 
+    layer_qwerty_lights, 
 	layer_num_lights,// overrides layer 1
 	layer_symbol_lights,
     layer_command_lights,       
@@ -224,7 +224,7 @@ void matrix_init_user(void) {
 
 layer_state_t layer_state_set_user(layer_state_t state) {
 	//rgblight_setrgb (0x00,  0x00, 0xFF);
-	rgblight_set_layer_state(0, layer_state_cmp(state, _DEFAULTS) && layer_state_cmp(default_layer_state,_COLEMAK));
+	rgblight_set_layer_state(0, layer_state_cmp(state, _DEFAULTS) && layer_state_cmp(default_layer_state,_QWERTY));
 	
 	rgblight_set_layer_state(1, layer_state_cmp(state, _NUM));
 	rgblight_set_layer_state(2, layer_state_cmp(state, _SYM));
