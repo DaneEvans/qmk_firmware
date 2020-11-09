@@ -137,7 +137,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #ifdef RGBLIGHT_ENABLE
 void keyboard_post_init_user(void) {
     // Enable the LED layers
-    rgblight_layers = my_rgb_layers;
+    //rgblight_layers = my_rgb_layers;
 	rgblight_mode(10);// haven't found a way to set this in a more useful way 
 
 }
