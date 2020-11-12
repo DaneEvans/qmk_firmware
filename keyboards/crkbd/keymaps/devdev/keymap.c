@@ -11,9 +11,8 @@ char layer_state_str[24];
  
   enum userspace_layers {
     _DEFAULTS = 0,
-    _QWERTY  = 0,
-    _COLEMAK,
-    
+	_COLEMAK = 0,
+    _QWERTY,
     _NUM,
     _SYM,
     _COMMAND,
@@ -24,34 +23,35 @@ char layer_state_str[24];
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+	
+		// colemak 
+	[_COLEMAK] = LAYOUT( \
+	//,-----------------------------------------------------.                    ,-----------------------------------------------------.
+	    LT(5,KC_TAB), 	KC_Q, 	 KC_W, 	  KC_F,    KC_P,    KC_G, 					LT(_SWITCH,KC_J),    KC_L,    KC_U,    KC_Y, KC_SCLN, KC_BSPC,  \
+	//|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+	    KC_LSFT,    KC_A,    KC_R,    KC_S,    KC_T,    KC_D, 						  KC_H,    KC_N,    KC_E,    KC_I,LT(5,KC_O),KC_QUOT, \
+	//|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|		
+		KC_LCTL,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B, 						  KC_K,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,  \
+	//|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+										 KC_LGUI,   MO(2),  KC_SPC, 	KC_ENT,    MO(3), KC_LALT  \
+										//`--------------------------'  `--------------------------'
+	),
 	// qwerty
 	[_QWERTY] = LAYOUT( \
 	//,-----------------------------------------------------.                    ,-----------------------------------------------------.
-	LT(5,KC_TAB), 	KC_Q, 	KC_W, 	KC_E, 	KC_R, 	KC_T, 							LT(_SWITCH,KC_Y), KC_U, 	KC_I, 	 KC_O, 	 KC_P, 	KC_BSPC,      \
+	KC_TRNS, 	KC_Q, 	KC_W, 	KC_E, 	KC_R, 	KC_T, 							LT(_SWITCH,KC_Y), KC_U, 	KC_I, 	 KC_O, 	 KC_P, 	KC_TRNS,  \
 	//|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-	KC_LSFT, 		KC_A, 	KC_S, 	KC_D, 	KC_F, 	KC_G, 							KC_H, 	  KC_J, 	KC_K, 	 KC_L, LT(5,KC_SCLN), KC_QUOT,\
+	KC_TRNS, 		KC_A, 	KC_S, 	KC_D, 	KC_F, 	KC_G, 							KC_H, 	  KC_J, 	KC_K, 	 KC_L, LT(5,KC_SCLN), KC_TRNS,\
 	//|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-	KC_LCTL, 		KC_Z, 	KC_X, 	KC_C, 	KC_V, 	KC_B, 							KC_N, 	  KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,       \
+	KC_TRNS, 		KC_Z, 	KC_X, 	KC_C, 	KC_V, 	KC_B, 							KC_N, 	  KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_TRNS,       \
     //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-										 KC_LGUI,   MO(2),  KC_SPC, 	KC_ENT,    MO(3), KC_RALT  \
+										 KC_TRNS,   KC_TRNS,  KC_TRNS, 	KC_TRNS,    KC_TRNS, KC_TRNS  \
 									   //`--------------------------'  `--------------------------'
 	),
-	
-	// colemak 
-	[_COLEMAK] = LAYOUT( \
-	//,-----------------------------------------------------.                    ,-----------------------------------------------------.
-	    KC_TRNS, 	KC_Q, 	 KC_W, 	  KC_F,    KC_P,    KC_G, 					LT(_SWITCH,KC_J),    KC_L,    KC_U,    KC_Y, KC_SCLN, KC_TRNS,  \
-	//|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-	    KC_TRNS,    KC_A,    KC_R,    KC_S,    KC_T,    KC_D, 						  KC_H,    KC_N,    KC_E,    KC_I,LT(5,KC_O),KC_TRNS, \
-	//|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|		
-		KC_TRNS,    KC_Z,    KC_X,    KC_C,    KC_V, KC_TRNS, 						  KC_K,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_TRNS,  \
-	//|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-		                                   KC_TRNS, KC_TRNS, KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS \
-										//`--------------------------'  `--------------------------'
-	),
+
 										   
 										   
-	// numbers
+	// numbers  - L thumb 
 	[_NUM] = LAYOUT( \
 	//,-----------------------------------------------------.                    ,-----------------------------------------------------.
 	     KC_ESC,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5, 					      KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_BSPC,  \
@@ -60,11 +60,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	//|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
 		KC_TRNS,   KC_NO,   KC_NO,   KC_NO,   KC_WH_D,   KC_PGDN,					     KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,  \
 	//|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-											KC_LGUI, KC_TRNS,  KC_SPC,     KC_ENT,   MO(4), KC_RALT  \
+											KC_TRNS, KC_TRNS,  KC_TRNS,     KC_TRNS,   MO(4), KC_TRNS  \
 										//`--------------------------'  `--------------------------'
 	),
 	
-	// symbols
+	// symbols  - R thumb 
 	[_SYM] = LAYOUT( \
 	//,-----------------------------------------------------.                    ,-----------------------------------------------------.
 	     KC_ESC, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC, 					   KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC, \
@@ -73,21 +73,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	//|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
 		KC_TRNS,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, 					   KC_UNDS, KC_PLUS, KC_LBRC, KC_RBRC, KC_BSLS, KC_TILD, \
 	//|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-											KC_LGUI,   MO(4),  KC_SPC,     KC_ENT, KC_TRNS, KC_RALT    \
+											KC_TRNS,   MO(4),  KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS    \
 										//`--------------------------'  `--------------------------'
 	),
 	
-	// commands 
+	// commands - both thumbs 
 	[_COMMAND] = LAYOUT( \
 	//,-----------------------------------------------------.                    ,-----------------------------------------------------.
-	      RESET,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, 						 KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, \
+	      RESET,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5, 						 KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_NO, \
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
 
 	    RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI,   KC_NO,   DF(0), 					 C(G(KC_LEFT)),   KC_NO,   KC_NO,   C(G(KC_RGHT)),   KC_NO,   KC_NO, \
 	//|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
 		RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD,   KC_NO,   DF(1), 					     KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, \
 	//|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-										    KC_LGUI, KC_TRNS,  KC_SPC,     KC_ENT, KC_TRNS, KC_RALT  \
+										    KC_TRNS, KC_TRNS,  KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS  \
 										//`--------------------------'  `--------------------------'
 	),
 	
@@ -100,7 +100,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	//|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|	  
 		  KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, 					   KC_PLUS,   KC_P1,   KC_P2,   KC_P3, KC_SLSH,   KC_NO, \
 	//|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|		  
-									   OSM(MOD_MEH),   KC_NO,   KC_NO,     KC_ENT,   KC_P0,  KC_PDOT \
+									   OSM(MOD_MEH),   KC_NO,   KC_TRNS,     KC_ENT,   KC_P0,  KC_PDOT \
 										//`--------------------------'  `--------------------------'
 	),	  
 		  
@@ -137,10 +137,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // it appears that these are different to the board numbering. 
 // when you specify n here, it lightss up n+1 on the board diagram - actually may be an entirely different pattern 
 
-// _COLEMAK,
+// _QWERTY,
 // Light on inner column and underglow 
-const rgblight_segment_t PROGMEM layer_colemak_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 10, HSV_RED}
+const rgblight_segment_t PROGMEM layer_qwerty_lights[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 10, HSV_AZURE}
 );
 
 // _NUM,
@@ -167,7 +167,7 @@ const rgblight_segment_t PROGMEM layer_numpad_lights[] = RGBLIGHT_LAYER_SEGMENTS
 );
 const rgblight_segment_t PROGMEM layer_numpad_rh_lights[] = RGBLIGHT_LAYER_SEGMENTS(
 	{0, 10, HSV_ORANGE},
-	{10, 3, HSV_BLUE},
+	{10, 5, HSV_BLUE},
     {15, 3, HSV_BLUE},
 	{18, 3, HSV_BLUE}
 );
@@ -189,7 +189,7 @@ const rgblight_segment_t PROGMEM layer_switcher_lights[] = RGBLIGHT_LAYER_SEGMEN
 
 // Now define the array of layers. Later layers take precedence
 const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
-    layer_colemak_lights, 
+    layer_qwerty_lights, 
 	layer_num_lights,// overrides layer 1
 	layer_symbol_lights,
     layer_command_lights,       
@@ -224,7 +224,7 @@ void matrix_init_user(void) {
 
 layer_state_t layer_state_set_user(layer_state_t state) {
 	//rgblight_setrgb (0x00,  0x00, 0xFF);
-	rgblight_set_layer_state(0, layer_state_cmp(state, _DEFAULTS) && layer_state_cmp(default_layer_state,_COLEMAK));
+	rgblight_set_layer_state(0, layer_state_cmp(state, _DEFAULTS) && layer_state_cmp(default_layer_state,_QWERTY));
 	
 	rgblight_set_layer_state(1, layer_state_cmp(state, _NUM));
 	rgblight_set_layer_state(2, layer_state_cmp(state, _SYM));

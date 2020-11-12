@@ -15,9 +15,15 @@ if [ "$LOCAL_BRANCH" == "master" ] || [ "$NUM_CORE_CHANGES" != "0" ]; then
     exit $?
 fi
 
-if [ "$LOCAL_BRANCH" == "Corne_init" ] || [ "$NUM_CORE_CHANGES" != "0" ]; then
-    echo "Making all keymaps for Corne keyboards"
+if [ "$LOCAL_BRANCH" == "devdev" ] || [ "$NUM_CORE_CHANGES" != "0" ]; then
+    echo "Making devdev for Corne keyboards"
     make crkbd:devdev
+	echo "Making devdev-config for Corne keyboards"
+    make crkbd:devdev-config
+	echo "Making devdev for Navi keyboards"
+    make navi10:devdev
+	
+	
     exit $?
 fi
 
