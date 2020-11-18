@@ -215,7 +215,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
   
   // layer switcher 
-  [_SWITCH] = LAYOUT(\
+[_SWITCH] = LAYOUT( \
   //,------------------------------------------------.                    ,---------------------------------------------------.
   _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,XXXXXXX, XXXXXXX,\
   //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------| 
