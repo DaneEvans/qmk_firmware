@@ -237,38 +237,34 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 char layer_state_str[24];
 // Now define the array of layers. Later layers take precedence
 
-
-
-
-
 // _COLEMAK,
 // Light on inner column and underglow 
 const rgblight_segment_t PROGMEM layer_colemak_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 1, HSV_RED}
+    {0, 10, HSV_RED}
 );
 
 // _NUM,
 // Light on inner column and underglow 
 const rgblight_segment_t PROGMEM layer_num_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 1, HSV_TEAL}
+    {0, 10, HSV_TEAL}
 );
 // _SYMBOL,
 // Light on inner column and underglow 
 const rgblight_segment_t PROGMEM layer_symbol_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 1, HSV_BLUE}
+    {0, 10, HSV_BLUE}
 );
 // _COMMAND,
 // Light on inner column and underglow 
 const rgblight_segment_t PROGMEM layer_command_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 1, HSV_PURPLE}
+    {0, 10, HSV_PURPLE}
 );
 
 //_NUMPAD
 const rgblight_segment_t PROGMEM layer_numpad_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-{0, 1, HSV_ORANGE}
+{0, 10, HSV_ORANGE}
 );
 const rgblight_segment_t PROGMEM layer_numpad_rh_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-	{0, 1, HSV_ORANGE},
+	{0, 10, HSV_ORANGE},
 	{10, 3, HSV_BLUE},
     {15, 3, HSV_BLUE},
 	{18, 3, HSV_BLUE}
@@ -277,12 +273,12 @@ const rgblight_segment_t PROGMEM layer_numpad_rh_lights[] = RGBLIGHT_LAYER_SEGME
 // _MOVE,
 // Light on inner column and underglow 
 const rgblight_segment_t PROGMEM layer_move_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 1, HSV_PINK}
+    {0, 10, HSV_PINK}
 );
 
 // _SWITCHER   // light up top row
 const rgblight_segment_t PROGMEM layer_switcher_lights[] = RGBLIGHT_LAYER_SEGMENTS( 
-    {0, 1, HSV_GREEN}
+    {0, 10, HSV_GREEN}
 	//{9, 2, HSV_GREEN},
 	//{17, 2, HSV_GREEN},
 	//{23, 2, HSV_GREEN}
@@ -377,6 +373,7 @@ static void print_status_narrow(void) {
             break;
         case _SWITCH:
             oled_write_P(PSTR("Switch\n"), false);
+            break;
         default:
             oled_write_ln_P(PSTR("Undef"), false);
     }
