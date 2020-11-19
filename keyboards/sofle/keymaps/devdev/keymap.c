@@ -259,7 +259,7 @@ static void print_status_narrow(void) {
     oled_write_P(PSTR("\n\n"), false);
     oled_write_ln_P(PSTR("Dane"), false);
     //oled_write_ln_P(PSTR("MODE"), false);
-    //oled_write_ln_P(PSTR(""), false);
+    oled_write_ln_P(PSTR(""), false);
     /*
     if (keymap_config.swap_lctl_lgui) {
         oled_write_ln_P(PSTR("MAC"), false);
@@ -295,6 +295,11 @@ static void print_status_narrow(void) {
         case _ADJUST:
             oled_write_P(PSTR("Adj\n"), false);
             break;
+        case _NUMPAD:
+            oled_write_P(PSTR("Numpad\n"), false);
+            break;
+        case _SWITCH:
+            oled_write_P(PSTR("Switcher\n"), false);
         default:
             oled_write_ln_P(PSTR("Undef"), false);
     }
