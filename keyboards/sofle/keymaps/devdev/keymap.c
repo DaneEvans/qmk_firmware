@@ -234,6 +234,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 #ifdef RGBLIGHT_ENABLE
+char layer_state_str[24];
 // Now define the array of layers. Later layers take precedence
 const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
     layer_colemak_lights, 
