@@ -239,12 +239,7 @@ char layer_state_str[24];
 
 
 
-void keyboard_post_init_user(void) {
-    // Enable the LED layers
-    rgblight_layers = my_rgb_layers;
-	rgblight_mode(10);// haven't found a way to set this in a more useful way 
 
-}
 
 // _COLEMAK,
 // Light on inner column and underglow 
@@ -316,7 +311,12 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 	rgblight_set_layer_state(7, layer_state_cmp(state, _SWITCH));
     return state;
 }
+void keyboard_post_init_user(void) {
+    // Enable the LED layers
+    rgblight_layers = my_rgb_layers;
+	rgblight_mode(10);// haven't found a way to set this in a more useful way 
 
+}
 #endif
 
 #ifdef OLED_DRIVER_ENABLE
