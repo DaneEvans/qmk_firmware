@@ -47,7 +47,7 @@ for more options.
 	
     //#define RGBLIGHT_ANIMATIONS
 	#define RGBLIGHT_EFFECT_BREATHING
-	//#define RGBLIGHT_EFFECT_RAINBOW_MOOD
+	#define RGBLIGHT_EFFECT_RAINBOW_MOOD
 	#define RGBLIGHT_EFFECT_RAINBOW_SWIRL
 	//#define RGBLIGHT_EFFECT_SNAKE
 	//#define RGBLIGHT_EFFECT_KNIGHT
@@ -68,7 +68,7 @@ for more options.
     #define RGBLIGHT_VAL_STEP 17
 #endif
 
- // i don't think i'm using the matrix
+#ifdef RGB_MATRIX_ENABLE
 #   define RGB_MATRIX_KEYPRESSES // reacts to keypresses
 // #   define RGB_MATRIX_KEYRELEASES // reacts to keyreleases (instead of keypresses)
 // #   define RGB_DISABLE_AFTER_TIMEOUT 0 // number of ticks to wait until disabling effects
