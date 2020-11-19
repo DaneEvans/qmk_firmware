@@ -234,6 +234,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 #ifdef RGBLIGHT_ENABLE
+// Now define the array of layers. Later layers take precedence
+const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
+    layer_colemak_lights, 
+	layer_num_lights,// overrides layer 1
+	layer_symbol_lights,
+    layer_command_lights,       
+	layer_numpad_lights, 
+	layer_numpad_rh_lights,
+	layer_switcher_lights  // Overrides other layers
+);
+
+
 void keyboard_post_init_user(void) {
     // Enable the LED layers
     rgblight_layers = my_rgb_layers;
@@ -289,16 +301,6 @@ const rgblight_segment_t PROGMEM layer_switcher_lights[] = RGBLIGHT_LAYER_SEGMEN
 );
 
 
-// Now define the array of layers. Later layers take precedence
-const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
-    layer_colemak_lights, 
-	layer_num_lights,// overrides layer 1
-	layer_symbol_lights,
-    layer_command_lights,       
-	layer_numpad_lights, 
-	layer_numpad_rh_lights,
-	layer_switcher_lights  // Overrides other layers
-);
 
 layer_state_t layer_state_set_user(layer_state_t state) {
 	rgblight_set_layer_state(0, layer_state_cmp(state, _DEFAULTS) && layer_state_cmp(default_layer_state,_COLEMAK));
