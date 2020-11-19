@@ -282,7 +282,7 @@ const rgblight_segment_t PROGMEM layer_move_lights[] = RGBLIGHT_LAYER_SEGMENTS(
 
 // _SWITCHER   // light up top row
 const rgblight_segment_t PROGMEM layer_switcher_lights[] = RGBLIGHT_LAYER_SEGMENTS( 
-    {0, 1, HSV_GREEN},
+    {0, 1, HSV_GREEN}
 	//{9, 2, HSV_GREEN},
 	//{17, 2, HSV_GREEN},
 	//{23, 2, HSV_GREEN}
