@@ -264,7 +264,7 @@ const rgblight_segment_t PROGMEM layer_numpad_lights[] = RGBLIGHT_LAYER_SEGMENTS
 {0, 20, HSV_ORANGE}
 );
 const rgblight_segment_t PROGMEM layer_numpad_rh_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-	{0, 20, HSV_ORANGE},
+	{0, 20, HSV_ORANGE}
 	//{10, 3, HSV_BLUE},
     //{15, 3, HSV_BLUE},
 	//{18, 3, HSV_BLUE}
