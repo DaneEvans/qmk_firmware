@@ -22,7 +22,10 @@ for more options.
 #define USE_SERIAL_PD2
 
 #define TAPPING_FORCE_HOLD
-#define TAPPING_TERM 200
+#ifdef TAPPING_TERM
+    #undef TAPPING_TERM
+    #define TAPPING_TERM 70
+#endif
 #define ENCODER_DIRECTION_FLIP
 
 
