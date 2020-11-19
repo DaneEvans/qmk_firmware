@@ -57,7 +57,7 @@ for more options.
 	//#define RGBLIGHT_EFFECT_ALTERNATING
 	//#define RGBLIGHT_EFFECT_TWINKLE
 	
-    //#define RGBLED_NUM 54
+    #define RGBLED_NUM 54
 	#define RGBLED_SPLIT
 	#define RGBLED_SPLIT { 27, 27 } // haven't figured out how to use this yet 
 	
