@@ -1,0 +1,32 @@
+
+changes to be made:
+-------------------------------------------------
+if you use the switcher layer to get to layers 4 or 5 you cant get out again 
+
+fix layer switcher issues 
+
+add macros 
+add meh 
+
+
+
+-------------------------------------------------------------------
+procedure for testing 
+
+type layer 1!     use thumb modifiers 
+
+then use the numpad to enter a number     use tab 
+
+enter layer 4 and toggle the rgb. then check colemak and reverting      both thumb buttons 
+
+use the layer switcher to get to layer 6                 press and hold y -which won't work. 
+
+
+
+
+----------------------------------------------------------
+
+12/09/20 
+
+added colemak, have something approaching usable. 
+

@@ -12,6 +12,8 @@
 
 char layer_state_str[24];
 
+#ifndef CUSTOM_LAYER_READ
+
 const char *read_layer_state(void) {
   switch (layer_state)
   {
@@ -34,3 +36,4 @@ const char *read_layer_state(void) {
 
   return layer_state_str;
 }
+#endif
