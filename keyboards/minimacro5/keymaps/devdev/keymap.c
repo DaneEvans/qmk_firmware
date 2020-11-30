@@ -7,6 +7,7 @@ enum layers {
 	_MEDIA,
 	_DISCORD,
 	_PHOTOSHOP
+
 };
 
 // Tap Dance declarations
@@ -96,6 +97,7 @@ void keyboard_post_init_user(void) {
 	//rgblight_mode(1);
 	rgblight_sethsv_at(HSV_GREEN, 0);
 }
+
 
 // Tap Dance definitions
 qk_tap_dance_action_t tap_dance_actions[] = {
