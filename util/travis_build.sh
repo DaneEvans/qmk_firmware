@@ -8,19 +8,7 @@ if [[ "$TRAVIS_COMMIT_MESSAGE" == *"[skip build]"* ]]; then
     echo "Skipping due to commit message"
     exit 0
 fi
-if [ "$LOCAL_BRANCH" == "devfix" ] || [ "$NUM_CORE_CHANGES" != "0" ]; then
-    echo "Making devdev for Corne keyboards"
-    make crkbd:devdev
-	echo "Making devdev-config for Corne keyboards"
-    make crkbd:devdev-config
-	echo "Making devdev for Navi keyboards"
-    make navi10:devdev
-	echo "Making devdev for Sofled keeb" 
-	make sofle:devdev
-	
-	
-    exit $?
-fi
+
 if [ "$LOCAL_BRANCH" == "master" ] || [ "$NUM_CORE_CHANGES" != "0" ]; then
     echo "Making devdev keymaps for all keyboards"
     make all:devdev
