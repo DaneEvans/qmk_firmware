@@ -18,8 +18,8 @@ fi
 if [ "$LOCAL_BRANCH" == "devdev" ] || [ "$NUM_CORE_CHANGES" != "0" ]; then
     echo "Making devdev for Corne keyboards"
     make crkbd:devdev
-	echo "Making devdev-config for Corne keyboards"
-    make crkbd:devdev-config
+	#echo "Making devdev-config for Corne keyboards"
+    #make crkbd:devdev-config
 	echo "Making devdev for Navi keyboards"
     make navi10:devdev
 	echo "Making devdev for Sofled keeb" 
@@ -32,19 +32,19 @@ fi
 exit_code=0
 
 for KB in $(make list-keyboards); do
-	KEYBOARD_CHANGES=$(echo "$QMK_CHANGES" | grep -E '^(keyboards/'${KB}'/)')
+	KEYBOARD_CHANGES=$(echo "$QMK_CHANGES" | grep -E '^(keyboards/'${KB}'/)') 
 	if [[ -z "$KEYBOARD_CHANGES" ]]; then
 		# skip as no changes for this keyboard
 		continue
 	fi
 
-	KEYMAP_ONLY=$(echo "$KEYBOARD_CHANGES" | grep -cv /keymaps/)
+	KEYMAP_ONLY=$(echo "$KEYBOARD_CHANGES" | grep -cv /keymaps/) 
 	if [[ $KEYMAP_ONLY -gt 0 ]]; then
 		echo "Making all keymaps for $KB"
 		make ${KB}:all
 		: $((exit_code = $exit_code + $?))
 	else
-		CHANGED_KEYMAPS=$(echo "$KEYBOARD_CHANGES" | grep -oP '(?<=keyboards/'${KB}'/keymaps/)([a-zA-Z0-9_-]+)(?=\/)')
+		CHANGED_KEYMAPS=$(echo "$KEYBOARD_CHANGES" | grep -oP '(?<=keyboards/'${KB}'/keymaps/)([a-zA-Z0-9_-]+)(?=\/)') 
 		for KM in $CHANGED_KEYMAPS ; do
 			echo "Making $KM for $KB"
 			make ${KB}:${KM}
