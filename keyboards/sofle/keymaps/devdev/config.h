@@ -6,12 +6,12 @@ for more options.
 */
 
 /* USB Device descriptor parameter */
-#define VENDOR_ID       0xFC32
-#define PRODUCT_ID      0x0287
-#define DEVICE_VER      0x0001
-#define MANUFACTURER    DaneEvans
-#define PRODUCT         SofleRGB
-#define DESCRIPTION     Sofle is 6×4+5keys+encoder column-staggered split keyboard.
+//#define VENDOR_ID       0xFC32
+//#define PRODUCT_ID      0x0287
+//#define DEVICE_VER      0x0001
+//#define MANUFACTURER    DaneEvans
+//#define PRODUCT         SofleRGB
+//#define DESCRIPTION     Sofle is 6×4+5keys+encoder column-staggered split keyboard.
 
 //#define USE_MATRIX_I2C
 
