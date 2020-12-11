@@ -11,9 +11,11 @@
 
 char layer_state_str[24];
  
+ 
   enum userspace_layers {
     _DEFAULTS = 0,
 	_COLEMAK = 0,
+	_COLEMAKDH, 
     _QWERTY,
 
     _NUM,
@@ -30,22 +32,37 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		// colemak 
 	[_COLEMAK] = LAYOUT( \
 	//,-----------------------------------------------------.                    ,-----------------------------------------------------.
-	    LT(5,KC_TAB), 	KC_Q, 	 KC_W, 	  KC_F,    KC_P,    KC_G, 					LT(_SWITCH,KC_J),    KC_L,    KC_U,    KC_Y, KC_SCLN, KC_BSPC,  \
+	    LT(_NUMPAD,KC_TAB), 	KC_Q, 	 KC_W, 	  KC_F,    KC_P,    KC_G, 					LT(_SWITCH,KC_J),    KC_L,    KC_U,    KC_Y, KC_SCLN, KC_BSPC,  \
 	//|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-	    KC_LSFT,    KC_A,    KC_R,    KC_S,    KC_T,    KC_D, 						  KC_H,    KC_N,    KC_E,    KC_I,LT(5,KC_O),KC_QUOT, \
+	    KC_LSFT,    KC_A,    KC_R,    KC_S,    KC_T,    KC_D, 						  KC_H,    KC_N,    KC_E,    KC_I,LT(_NUMPAD,KC_O),KC_QUOT, \
 	//|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|		
 		KC_LCTL,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B, 						  KC_K,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,  \
 	//|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-										 KC_LGUI,   MO(2),  KC_SPC, 	KC_ENT,    MO(3), KC_LALT  \
+										 KC_LGUI,   MO(_NUM),  KC_SPC, 	KC_ENT,    MO(_SYM), KC_LALT  \
 
 										//`--------------------------'  `--------------------------'
 	),
+	
+			// colemak DH
+	[_COLEMAKDH] = LAYOUT( \
+	//,-----------------------------------------------------.                    ,-----------------------------------------------------.
+	    LT(_NUMPAD,KC_TAB), 	KC_Q, 	 KC_W, 	  KC_F,    KC_P,    KC_B, 					LT(_SWITCH,KC_J),    KC_L,    KC_U,    KC_Y, KC_SCLN, KC_BSPC,  \
+	//|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+	    KC_LSFT,    KC_A,    KC_R,    KC_S,    KC_T,    KC_G, 						  KC_M,    KC_N,    KC_E,    KC_I,LT(_NUMPAD,KC_O),KC_QUOT, \
+	//|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|		
+		KC_LCTL,    KC_Z,    KC_X,    KC_C,    KC_D,    KC_V, 						  KC_K,    KC_H, KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,  \
+	//|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+										 KC_LGUI,   MO(_NUM),  KC_SPC, 	KC_ENT,    MO(_SYM), KC_LALT  \
+
+										//`--------------------------'  `--------------------------'
+	),
+	
 	// qwerty
 	[_QWERTY] = LAYOUT( \
 	//,-----------------------------------------------------.                    ,-----------------------------------------------------.
 	KC_TRNS, 	KC_Q, 	KC_W, 	KC_E, 	KC_R, 	KC_T, 							LT(_SWITCH,KC_Y), KC_U, 	KC_I, 	 KC_O, 	 KC_P, 	KC_TRNS,  \
 	//|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-	KC_TRNS, 		KC_A, 	KC_S, 	KC_D, 	KC_F, 	KC_G, 							KC_H, 	  KC_J, 	KC_K, 	 KC_L, LT(5,KC_SCLN), KC_TRNS,\
+	KC_TRNS, 		KC_A, 	KC_S, 	KC_D, 	KC_F, 	KC_G, 							KC_H, 	  KC_J, 	KC_K, 	 KC_L, LT(_NUMPAD,KC_SCLN), KC_TRNS,\
 	//|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
 	KC_TRNS, 		KC_Z, 	KC_X, 	KC_C, 	KC_V, 	KC_B, 							KC_N, 	  KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_TRNS,       \
     //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
@@ -64,7 +81,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	//|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
 		KC_TRNS,   KC_NO,   KC_NO,   KC_NO,   KC_WH_D,   KC_PGDN,					     KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,  \
 	//|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-											KC_TRNS, KC_TRNS,  KC_TRNS,     KC_TRNS,   MO(4), KC_TRNS  \
+											KC_TRNS, KC_TRNS,  KC_TRNS,     KC_TRNS,   MO(_COMMAND), KC_TRNS  \
 										//`--------------------------'  `--------------------------'
 	),
 	
@@ -77,7 +94,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	//|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
 		KC_TRNS,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, 					   KC_UNDS, KC_PLUS, KC_LBRC, KC_RBRC, KC_BSLS, KC_TILD, \
 	//|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-											KC_TRNS,   MO(4),  KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS    \
+											KC_TRNS,   MO(_COMMAND),  KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS    \
 										//`--------------------------'  `--------------------------'
 	),
 	
@@ -87,9 +104,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	      RESET,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5, 						 KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_NO, \
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
 
-	    RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI,   KC_NO,   DF(0), 					 C(G(KC_LEFT)),   KC_NO,   KC_NO,   C(G(KC_RGHT)),   KC_NO,   KC_NO, \
+	    RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI,   DF(1),   DF(0), 					 C(G(KC_LEFT)),   KC_NO,   KC_NO,   C(G(KC_RGHT)),   KC_NO,   KC_NO, \
 	//|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-		RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD,   KC_NO,   DF(1), 					     KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, \
+		RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD,   KC_NO,   DF(2), 					     KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, \
 	//|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
 										    KC_TRNS, KC_TRNS,  KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS  \
 										//`--------------------------'  `--------------------------'
@@ -147,6 +164,12 @@ const rgblight_segment_t PROGMEM layer_qwerty_lights[] = RGBLIGHT_LAYER_SEGMENTS
     {0, 10, HSV_AZURE}
 );
 
+// _COLEMAKDH,
+// Light on inner column and underglow 
+const rgblight_segment_t PROGMEM layer_colemakdh_lights[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 10, HSV_RED}
+);
+
 // _NUM,
 // Light on inner column and underglow 
 const rgblight_segment_t PROGMEM layer_num_lights[] = RGBLIGHT_LAYER_SEGMENTS(
@@ -194,6 +217,7 @@ const rgblight_segment_t PROGMEM layer_switcher_lights[] = RGBLIGHT_LAYER_SEGMEN
 // Now define the array of layers. Later layers take precedence
 const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
     layer_qwerty_lights, 
+	layer_colemakdh_lights,
 	layer_num_lights,// overrides layer 1
 	layer_symbol_lights,
     layer_command_lights,       
@@ -229,16 +253,17 @@ void matrix_init_user(void) {
 layer_state_t layer_state_set_user(layer_state_t state) {
 	//rgblight_setrgb (0x00,  0x00, 0xFF);
 	rgblight_set_layer_state(0, layer_state_cmp(state, _DEFAULTS) && layer_state_cmp(default_layer_state,_QWERTY));
+	rgblight_set_layer_state(1, layer_state_cmp(state, _DEFAULTS) && layer_state_cmp(default_layer_state,_QWERTY));
 	
 
-	rgblight_set_layer_state(1, layer_state_cmp(state, _NUM));
-	rgblight_set_layer_state(2, layer_state_cmp(state, _SYM));
-	rgblight_set_layer_state(3, layer_state_cmp(state, _COMMAND));
-	rgblight_set_layer_state(4, layer_state_cmp(state, _NUMPAD));
+	rgblight_set_layer_state(2, layer_state_cmp(state, _NUM));
+	rgblight_set_layer_state(3, layer_state_cmp(state, _SYM));
+	rgblight_set_layer_state(4, layer_state_cmp(state, _COMMAND));
+	rgblight_set_layer_state(5, layer_state_cmp(state, _NUMPAD));
 	if (!has_usb())
-		rgblight_set_layer_state(5, layer_state_cmp(state, _NUMPAD));
-	rgblight_set_layer_state(6, layer_state_cmp(state, _MOVE));
-	rgblight_set_layer_state(7, layer_state_cmp(state, _SWITCH));
+		rgblight_set_layer_state(6, layer_state_cmp(state, _NUMPAD));
+	rgblight_set_layer_state(7, layer_state_cmp(state, _MOVE));
+	rgblight_set_layer_state(8, layer_state_cmp(state, _SWITCH));
     return state;
 }
 
@@ -285,7 +310,9 @@ const char *read_layer_state(void) {
       case _COLEMAK:
         snprintf(layer_state_str, sizeof(layer_state_str), "Layer: COLEMAK");
         break;    
-        
+      case _COLEMAKDH:
+        snprintf(layer_state_str, sizeof(layer_state_str), "Layer: COLEMAKDH");
+        break;    
      default: // either a new default, or the board just started up 
         snprintf(layer_state_str, sizeof(layer_state_str), "Default Layer: %ld ", default_layer_state);
         break;
@@ -307,7 +334,7 @@ const char *read_layer_state(void) {
     snprintf(layer_state_str, sizeof(layer_state_str), "Layer: Movement");
     break;
   case _SWITCH:
-    snprintf(layer_state_str, sizeof(layer_state_str), "Layer: Layer Switcher");
+    snprintf(layer_state_str, sizeof(layer_state_str), "Layer: Layer Switch");
     break;		
   default:
     snprintf(layer_state_str, sizeof(layer_state_str), "Layer: Undef-%ld", layer_state);
