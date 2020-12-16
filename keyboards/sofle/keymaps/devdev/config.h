@@ -17,6 +17,17 @@ for more options.
 
 /* Select hand configuration */
 
+///https://thomasbaart.nl/2018/12/01/reducing-firmware-size-in-qmk/
+
+#ifndef NO_DEBUG
+#define NO_DEBUG
+#endif // !NO_DEBUG
+#if !defined(NO_PRINT) && !defined(CONSOLE_ENABLE)
+#define NO_PRINT
+#endif // !NO_PRINT
+
+
+
 #define MASTER_LEFT
 // #define MASTER_RIGHT
 // #define EE_HANDS
@@ -53,8 +64,8 @@ for more options.
 	
     //#define RGBLIGHT_ANIMATIONS
 	#define RGBLIGHT_EFFECT_BREATHING
-	#define RGBLIGHT_EFFECT_RAINBOW_MOOD
-	#define RGBLIGHT_EFFECT_RAINBOW_SWIRL
+	//#define RGBLIGHT_EFFECT_RAINBOW_MOOD
+	//#define RGBLIGHT_EFFECT_RAINBOW_SWIRL
 	//#define RGBLIGHT_EFFECT_SNAKE
 	//#define RGBLIGHT_EFFECT_KNIGHT
 	//#define RGBLIGHT_EFFECT_CHRISTMAS
