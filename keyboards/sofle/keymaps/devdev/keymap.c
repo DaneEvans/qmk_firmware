@@ -7,6 +7,7 @@ enum sofle_layers {
     _DEFAULTS = 0,
     _QWERTY = 0,
     _COLEMAK,
+	_COLEMAKDH, 
     _LOWER,
     _RAISE,
     _ADJUST,
@@ -17,6 +18,7 @@ enum sofle_layers {
 enum custom_keycodes {
     KC_QWERTY = SAFE_RANGE,
     KC_COLEMAK,
+	KC_COLEMAKDH,
     KC_LOWER,
     KC_RAISE,
     KC_ADJUST,
@@ -93,6 +95,37 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS,    KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS \
   //            \--------+--------+--------+---------+-------|   |--------+---------+--------+---------+-------/  
 ),
+
+/*
+ * COLEMAK-DH
+ * ,-----------------------------------------.                    ,-----------------------------------------.
+ * | ESC  |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  `   |
+ * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
+ * | TAB  |   Q  |   W  |   F  |   P  |   G  |                    |   J  |   L  |   U  |   Y  |   ;  | Bspc |
+ * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
+ * |LShift|   A  |   R  |   S  |   T  |   D  |-------.    ,-------|   H  |   N  |   E  |   I  |   O  |  '   |
+ * |------+------+------+------+------+------|  MUTE |    |DISCORD|------+------+------+------+------+------|
+ * | LCTR |   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   K  |   M  |   ,  |   .  |   /  |LShift|
+ * `-----------------------------------------/       /     \      \-----------------------------------------'
+ *            | Bspc | WIN  |LOWER | Enter| /Space  /       \Enter \  |SPACE |RAISE | RCTR | RAlt |
+ *            |      |      |      |      |/       /         \      \ |      |      |      |      |
+ *            `----------------------------------'           '------''---------------------------'
+ */
+
+[_COLEMAKDH] = LAYOUT( \
+  //,------------------------------------------------.                    ,---------------------------------------------------.
+  KC_TRNS,  KC_1,   KC_2,    KC_3,    KC_4,    KC_5,                      LT(_SWITCH,KC_6),    KC_7,   KC_8,    KC_9,    KC_0,    KC_TRNS, \
+  //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------| 
+  KC_TRNS,  KC_Q,   KC_W,    KC_F,    KC_P,    KC_B,                      KC_J,    KC_L,   KC_U,    KC_Y,    KC_SCLN, KC_TRNS, \
+  //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------| 
+  KC_TRNS,  KC_A,   KC_R,    KC_S,    KC_T,    KC_G,                      KC_M,    KC_N,   KC_E,    KC_I,    KC_O,    KC_TRNS, \
+  //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------| 
+  KC_TRNS,  KC_Z,   KC_X,    KC_C,    KC_D,    KC_V,  KC_TRNS,    KC_TRNS,KC_K,    KC_H,   KC_COMM, KC_DOT,  KC_SLSH, KC_TRNS, \
+  //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------| 
+                 KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS,    KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS \
+  //            \--------+--------+--------+---------+-------|   |--------+---------+--------+---------+-------/  
+),
+
 /* LOWER
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * | trans|  F1  |  F2  |  F3  |  F4  |  F5  |                    |  F6  |  F7  |  F8  |  F9  | F10  | F11  |
@@ -167,7 +200,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------| 
   RESET,   XXXXXXX,XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
   //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------| 
-  RGB_TOG, RGB_HUI,RGB_SAI, RGB_VAI, XXXXXXX,KC_COLEMAK,                 C(G(KC_LEFT)),KC_NO,KC_NO,C(G(KC_RGHT)),XXXXXXX, XXXXXXX, \
+  RGB_TOG, RGB_HUI,RGB_SAI, RGB_VAI, KC_COLEMAKDH,KC_COLEMAK,                 C(G(KC_LEFT)),KC_NO,KC_NO,C(G(KC_RGHT)),XXXXXXX, XXXXXXX, \
   //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------| 
   RGB_MOD, RGB_HUD,RGB_SAD, RGB_VAD, XXXXXXX,KC_QWERTY,XXXXXXX, XXXXXXX, XXXXXXX, KC_MPRV, KC_MPLY, KC_MNXT, XXXXXXX, XXXXXXX, \
   //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------| 
@@ -241,8 +274,11 @@ char layer_state_str[24];
 
 // _COLEMAK,
 // Light on inner column and underglow 
-const rgblight_segment_t PROGMEM layer_colemak_lights[] = RGBLIGHT_LAYER_SEGMENTS(
+const rgblight_segment_t PROGMEM layer_qwerty_lights[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, 20, HSV_RED}
+);
+const rgblight_segment_t PROGMEM layer_colemakdh_lights[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 20, HSV_PINK}
 );
 
 // _NUM,
@@ -287,17 +323,20 @@ const rgblight_segment_t PROGMEM layer_switcher_lights[] = RGBLIGHT_LAYER_SEGMEN
 );
 
 const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
-    layer_colemak_lights, 
+	
+    layer_qwerty_lights, 
 	layer_num_lights,// overrides layer 1
 	layer_symbol_lights,
     layer_command_lights,       
 	layer_numpad_lights, 
 	layer_numpad_rh_lights,
-	layer_switcher_lights  // Overrides other layers
+	layer_switcher_lights,  // Overrides other layers
+	layer_colemakdh_lights
 );
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-	rgblight_set_layer_state(0, layer_state_cmp(state, _DEFAULTS) && layer_state_cmp(default_layer_state,_COLEMAK));
+	rgblight_set_layer_state(0, layer_state_cmp(state, _DEFAULTS) && layer_state_cmp(default_layer_state,_QWERTY));
+	rgblight_set_layer_state(7, layer_state_cmp(state, _DEFAULTS) && layer_state_cmp(default_layer_state,_COLEMAKDH));
     
     //layer_state_cmp(state, 1));
 	rgblight_set_layer_state(1, layer_state_cmp(state, _LOWER));
@@ -306,7 +345,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 	rgblight_set_layer_state(4, layer_state_cmp(state, _NUMPAD));
 	//if (!has_usb())
 	//	rgblight_set_layer_state(5, layer_state_cmp(state, _NUMPAD));
-	rgblight_set_layer_state(7, layer_state_cmp(state, _SWITCH));
+	rgblight_set_layer_state(6, layer_state_cmp(state, _SWITCH));
     return state;
 }
 void keyboard_post_init_user(void) {
@@ -332,7 +371,7 @@ static void render_logo(void) {
 static void print_status_narrow(void) {
     // Print current mode
     oled_write_P(PSTR("\n\n"), false);
-    oled_write_ln_P(PSTR("Dane"), false);
+    oled_write_ln_P(PSTR("Dane\n"), false);
     //oled_write_ln_P(PSTR("MODE"), false);
     oled_write_ln_P(PSTR(""), false);
     /*
@@ -350,6 +389,10 @@ static void print_status_narrow(void) {
         case _COLEMAK:
             oled_write_ln_P(PSTR("Clmk"), false);
             break;
+        case _COLEMAKDH:
+            oled_write_ln_P(PSTR("CmkDH"), false);
+            break;			
+			
         default:
             oled_write_P(PSTR("Undef"), false);
     }
@@ -374,7 +417,7 @@ static void print_status_narrow(void) {
             oled_write_P(PSTR("Nump\n"), false);
             break;
         case _SWITCH:
-            oled_write_P(PSTR("Switch\n"), false);
+            oled_write_P(PSTR("Swit\n"), false);
             break;
         default:
             oled_write_ln_P(PSTR("Undef"), false);
@@ -414,7 +457,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 set_single_persistent_default_layer(_COLEMAK);
             }
-            return false;
+            return false; 
+        case KC_COLEMAKDH:
+            if (record->event.pressed) {
+                set_single_persistent_default_layer(_COLEMAKDH);
+            }
+            return false; 
         case KC_LOWER:
             if (record->event.pressed) {
                 layer_on(_LOWER);
@@ -431,6 +479,31 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             } else {
                 layer_off(_RAISE);
                 update_tri_layer(_LOWER, _RAISE, _ADJUST);
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
             }
             return false;
         case KC_ADJUST:
