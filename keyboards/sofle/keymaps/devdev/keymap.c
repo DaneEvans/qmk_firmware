@@ -1,4 +1,5 @@
 // SOFLE
+#include <stdio.h>
 
 #include QMK_KEYBOARD_H
 
@@ -101,11 +102,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * | ESC  |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  `   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | TAB  |   Q  |   W  |   F  |   P  |   G  |                    |   J  |   L  |   U  |   Y  |   ;  | Bspc |
+ * | TAB  |   Q  |   W  |   F  |   P  |   B  |                    |   J  |   L  |   U  |   Y  |   ;  | Bspc |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |LShift|   A  |   R  |   S  |   T  |   D  |-------.    ,-------|   H  |   N  |   E  |   I  |   O  |  '   |
+ * |LShift|   A  |   R  |   S  |   T  |   G  |-------.    ,-------|   M  |   N  |   E  |   I  |   O  |  '   |
  * |------+------+------+------+------+------|  MUTE |    |DISCORD|------+------+------+------+------+------|
- * | LCTR |   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   K  |   M  |   ,  |   .  |   /  |LShift|
+ * | LCTR |   Z  |   X  |   C  |   D  |   V  |-------|    |-------|   K  |   H  |   ,  |   .  |   /  |LShift|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *            | Bspc | WIN  |LOWER | Enter| /Space  /       \Enter \  |SPACE |RAISE | RCTR | RAlt |
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
@@ -379,7 +380,8 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 void keyboard_post_init_user(void) {
     // Enable the LED layers
     rgblight_layers = my_rgb_layers;
-	rgblight_mode(1);// haven't found a way to set this in a more useful way 
+	rgblight_set_val(50);
+	rgblight_mode(10);// haven't found a way to set this in a more useful way 
 
 }
 #endif
@@ -400,6 +402,7 @@ static void print_status_narrow(void) {
     // Print current mode
     oled_write_P(PSTR("\n\n"), false);
     oled_write_ln_P(PSTR("Dane\nEvans"), false);
+
     //oled_write_ln_P(PSTR("MODE"), false);
     oled_write_ln_P(PSTR(""), false);
     /*
@@ -409,6 +412,14 @@ static void print_status_narrow(void) {
         oled_write_ln_P(PSTR("WIN"), false);
     }
     */
+	uint8_t val = rgblight_get_val(); 
+	char string[10];
+	sprintf(string, "Bgt: %d",val) ; 
+	//string = ("Bright: %ld",val) ; 
+	oled_write_ln(string,false);
+	
+	//snprintf(layer_state_str, sizeof(layer_state_str), "Layer: Undef-%ld", layer_state)
+	
 
     switch (get_highest_layer(default_layer_state)) {
         case _QWERTY:
@@ -422,7 +433,7 @@ static void print_status_narrow(void) {
             break;			
 			
         default:
-            oled_write_P(PSTR("Undef"), false);
+            oled_write_ln_P(PSTR("Undef"), false);
     }
     oled_write_P(PSTR("\n\n"), false);
     // Print current layer
@@ -450,11 +461,6 @@ static void print_status_narrow(void) {
         default:
             oled_write_ln_P(PSTR("Undef"), false);
     }
-    /*
-    oled_write_P(PSTR("\n\n"), false);
-    led_t led_usb_state = host_keyboard_led_state();
-    oled_write_ln_P(PSTR("CPSLK"), led_usb_state.caps_lock);
-    */
 }
 
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
