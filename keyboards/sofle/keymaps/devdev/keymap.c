@@ -196,7 +196,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
   [_ADJUST] = LAYOUT( \
   //,------------------------------------------------.                    ,---------------------------------------------------.
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+  EEP_RST, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
   //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------| 
   RESET,   XXXXXXX,XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
   //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------| 
@@ -269,13 +269,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 #ifdef RGBLIGHT_ENABLE
-char layer_state_str[24];
+char layer_state_str[70];
 // Now define the array of layers. Later layers take precedence
 
-// _COLEMAK,
+// QWERTY,
 // Light on inner column and underglow 
 const rgblight_segment_t PROGMEM layer_qwerty_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 20, HSV_RED}
+    {0, 6, HSV_RED},
+    {7, 4, HSV_RED},
+    {25, 2, HSV_RED},
+    {35+0, 6, HSV_RED},
+    {35+7, 4, HSV_RED},
+    {35+25, 2, HSV_RED}    
 );
 const rgblight_segment_t PROGMEM layer_colemakdh_lights[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, 20, HSV_PINK}
@@ -284,52 +289,76 @@ const rgblight_segment_t PROGMEM layer_colemakdh_lights[] = RGBLIGHT_LAYER_SEGME
 // _NUM,
 // Light on inner column and underglow 
 const rgblight_segment_t PROGMEM layer_num_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 20, HSV_TEAL}
+    {0, 6, HSV_TEAL},
+    {7, 4, HSV_TEAL},
+    {25, 2, HSV_TEAL},
+    {35+0, 6, HSV_TEAL},
+    {35+7, 4, HSV_TEAL},
+    {35+25, 2, HSV_TEAL}  
 );
 // _SYMBOL,
 // Light on inner column and underglow 
 const rgblight_segment_t PROGMEM layer_symbol_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 20, HSV_BLUE}
-);
+    {0, 6, HSV_BLUE},
+    {7, 4, HSV_BLUE},
+    {25, 2, HSV_BLUE},
+    {35+0, 6, HSV_BLUE},
+    {35+7, 4, HSV_BLUE},
+    {35+25, 2, HSV_BLUE}  
+    );
 // _COMMAND,
 // Light on inner column and underglow 
 const rgblight_segment_t PROGMEM layer_command_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 20, HSV_PURPLE}
+    {0, 6, HSV_PURPLE},
+    {7, 4, HSV_PURPLE},
+    {25, 2, HSV_PURPLE},
+    {35+0, 6, HSV_PURPLE},
+    {35+7, 4, HSV_PURPLE},
+    {35+25, 2, HSV_PURPLE}  
 );
 
 //_NUMPAD
 const rgblight_segment_t PROGMEM layer_numpad_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-{0, 20, HSV_ORANGE}
-);
-const rgblight_segment_t PROGMEM layer_numpad_rh_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-	{0, 20, HSV_ORANGE}
-	//{10, 3, HSV_BLUE},
-    //{15, 3, HSV_BLUE},
-	//{18, 3, HSV_BLUE}
-);
+    {0, 6, HSV_ORANGE},
+    {7, 4, HSV_ORANGE},
+    {25, 2, HSV_ORANGE},
+    {35+0, 6, HSV_ORANGE},
+    {35+7, 4, HSV_ORANGE},
+    {35+25, 2, HSV_ORANGE},
+    {35+15, 5, HSV_BLUE},
+    {35+22, 3, HSV_BLUE},
+    {35+27, 3, HSV_BLUE}
+    );
+//const rgblight_segment_t PROGMEM layer_numpad_rh_lights[] = RGBLIGHT_LAYER_SEGMENTS(
+//	{0, 11, HSV_ORANGE}
+//	{10, 3, HSV_BLUE},
+//    {15, 3, HSV_BLUE},
+//	{18, 3, HSV_BLUE}
+//);
 
 // _MOVE,
 // Light on inner column and underglow 
-const rgblight_segment_t PROGMEM layer_move_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 20, HSV_PINK}
-);
+//const rgblight_segment_t PROGMEM layer_move_lights[] = RGBLIGHT_LAYER_SEGMENTS(
+//    {0, 11, HSV_PINK}
+//);
 
 // _SWITCHER   // light up top row
 const rgblight_segment_t PROGMEM layer_switcher_lights[] = RGBLIGHT_LAYER_SEGMENTS( 
-    {0, 20, HSV_GREEN}
-	//{9, 2, HSV_GREEN},
-	//{17, 2, HSV_GREEN},
-	//{23, 2, HSV_GREEN}
+    {0, 6, HSV_GREEN},
+    {7, 4, HSV_GREEN},
+    {25, 2, HSV_GREEN},
+    {35+0, 6, HSV_GREEN},
+    {35+7, 4, HSV_GREEN},
+    {35+25, 2, HSV_GREEN}  
 );
 
 const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
-	
+
     layer_qwerty_lights, 
 	layer_num_lights,// overrides layer 1
 	layer_symbol_lights,
     layer_command_lights,       
 	layer_numpad_lights, 
-	layer_numpad_rh_lights,
 	layer_switcher_lights,  // Overrides other layers
 	layer_colemakdh_lights
 );
@@ -337,21 +366,20 @@ const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
 layer_state_t layer_state_set_user(layer_state_t state) {
 	rgblight_set_layer_state(0, layer_state_cmp(state, _DEFAULTS) && layer_state_cmp(default_layer_state,_QWERTY));
 	rgblight_set_layer_state(7, layer_state_cmp(state, _DEFAULTS) && layer_state_cmp(default_layer_state,_COLEMAKDH));
+
     
     //layer_state_cmp(state, 1));
 	rgblight_set_layer_state(1, layer_state_cmp(state, _LOWER));
 	rgblight_set_layer_state(2, layer_state_cmp(state, _RAISE));
 	rgblight_set_layer_state(3, layer_state_cmp(state, _ADJUST));
 	rgblight_set_layer_state(4, layer_state_cmp(state, _NUMPAD));
-	//if (!has_usb())
-	//	rgblight_set_layer_state(5, layer_state_cmp(state, _NUMPAD));
-	rgblight_set_layer_state(6, layer_state_cmp(state, _SWITCH));
+	rgblight_set_layer_state(5, layer_state_cmp(state, _SWITCH));
     return state;
 }
 void keyboard_post_init_user(void) {
     // Enable the LED layers
     rgblight_layers = my_rgb_layers;
-	rgblight_mode(10);// haven't found a way to set this in a more useful way 
+	rgblight_mode(1);// haven't found a way to set this in a more useful way 
 
 }
 #endif
@@ -371,7 +399,7 @@ static void render_logo(void) {
 static void print_status_narrow(void) {
     // Print current mode
     oled_write_P(PSTR("\n\n"), false);
-    oled_write_ln_P(PSTR("Dane\n"), false);
+    oled_write_ln_P(PSTR("Dane\nEvans"), false);
     //oled_write_ln_P(PSTR("MODE"), false);
     oled_write_ln_P(PSTR(""), false);
     /*
@@ -479,31 +507,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             } else {
                 layer_off(_RAISE);
                 update_tri_layer(_LOWER, _RAISE, _ADJUST);
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
             }
             return false;
         case KC_ADJUST:
