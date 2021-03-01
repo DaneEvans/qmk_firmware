@@ -380,7 +380,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 void keyboard_post_init_user(void) {
     // Enable the LED layers
     rgblight_layers = my_rgb_layers;
-	rgblight_set_val(50);
+	//rgblight_set_val(50);
 	rgblight_mode(10);// haven't found a way to set this in a more useful way 
 
 }
