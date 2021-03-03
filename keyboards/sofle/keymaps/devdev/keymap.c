@@ -12,7 +12,7 @@ struct HSV
   int v;
 };
 
-HSV override_value(int h, int s, int v, int Override)
+const HSV override_value(int h, int s, int v, int Override)
   {
     HSV hsv;
     hsv.h = h;
