@@ -12,7 +12,7 @@ struct HSV
   int v;
 };
 
-const HSV override_value(int h, int s, int v, int Override)
+/*const HSV override_value(int h, int s, int v, int Override)
   {
     HSV hsv;
     hsv.h = h;
@@ -20,16 +20,20 @@ const HSV override_value(int h, int s, int v, int Override)
     hsv.v = Override;
     return hsv;
   }
+  */
 
 
-#define TO_HSV( hsv) hsv.h,hsv.s,hsv.v
+#define override_value(h, s, v, Override) h, s , Override
+
+
+#define TO_HSV( hsv) hsv // .h,hsv.s,hsv.v
 
 enum sofle_layers {
     /* _M_XYZ = Mac Os, _W_XYZ = Win/Linux */
     _DEFAULTS = 0,
     _QWERTY = 0,
     _COLEMAK,
-	_COLEMAKDH, 
+	  _COLEMAKDH, 
     _LOWER,
     _RAISE,
     _ADJUST,
@@ -40,7 +44,7 @@ enum sofle_layers {
 enum custom_keycodes {
     KC_QWERTY = SAFE_RANGE,
     KC_COLEMAK,
-	KC_COLEMAKDH,
+	  KC_COLEMAKDH,
     KC_LOWER,
     KC_RAISE,
     KC_ADJUST,
@@ -83,9 +87,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                  KC_BSPC, KC_LGUI, KC_LOWER, KC_SPC,  KC_ENT   ,     KC_SPC, KC_ENT ,  KC_RAISE, KC_RCTRL, KC_RALT \
   //            \--------+--------+--------+---------+-------|   |--------+---------+--------+---------+-------/  
 ),
-
-
-
 
 
 /*
