@@ -5,9 +5,9 @@
 
 #define INDICATOR_BRIGHTNESS 20
 
-HSV override_value(HSV hsv, int Override)
+int, int, int  override_value(int h, int s, int v, int Override)
   {
-    return (HSV){hsv.h, hsv.s, Override};
+    return h, s, Override;
   }
 
 
