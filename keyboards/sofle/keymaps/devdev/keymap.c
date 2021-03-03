@@ -7,7 +7,7 @@
 
 #define RGB_WHITE 0xFF, 0xFF, 0xFF
 
-#define HS(Hue,Sat,Val) Hue, Sat
+#define HS(Hue,Sat,Val) (Hue, Sat)
 #define value_override(HSV, Override) (HS(HSV), Override) 
 
 
