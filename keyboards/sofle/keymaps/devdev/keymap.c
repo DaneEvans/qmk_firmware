@@ -288,17 +288,19 @@ char layer_state_str[70];
 // QWERTY,
 // Light on inner column and underglow 
 const rgblight_segment_t PROGMEM layer_qwerty_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-	{0, 1, HSV_OVERRIDE(HSV_RED, INDICATOR_BRIGHTNESS)},
+  SET_INDICATORS(HSV_RED),
+	//{0, 1, HSV_OVERRIDE(HSV_RED, INDICATOR_BRIGHTNESS)},
     {1, 5, HSV_RED},
     {7, 4, HSV_RED},
     {25, 2, HSV_RED},
-	{35+0, 1, HSV_OVERRIDE(HSV_RED, INDICATOR_BRIGHTNESS)},
+	//{35+0, 1, HSV_OVERRIDE(HSV_RED, INDICATOR_BRIGHTNESS)},
     {35+1, 5, HSV_RED},
     {35+7, 4, HSV_RED},
     {35+25, 2, HSV_RED}    
 );
 const rgblight_segment_t PROGMEM layer_colemakdh_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-	{0, 1, HSV_OVERRIDE(HSV_PINK, INDICATOR_BRIGHTNESS)},
+  SET_INDICATORS(HSV_PINK),
+	//{0, 1, HSV_OVERRIDE(HSV_PINK, INDICATOR_BRIGHTNESS)},
     {1, 19, HSV_PINK}
 );
 
