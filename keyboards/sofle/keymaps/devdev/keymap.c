@@ -3,6 +3,11 @@
 
 #include QMK_KEYBOARD_H
 
+#define INDICATOR_BRIGHTNESS 20
+
+#define value_override(Hue, Sat, Val, Override) (Hue, Sat, Override) 
+
+
 enum sofle_layers {
     /* _M_XYZ = Mac Os, _W_XYZ = Win/Linux */
     _DEFAULTS = 0,
@@ -273,27 +278,35 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 char layer_state_str[70];
 // Now define the array of layers. Later layers take precedence
 
+
+
+
 // QWERTY,
 // Light on inner column and underglow 
 const rgblight_segment_t PROGMEM layer_qwerty_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 6, HSV_RED},
+	{0, 1, value_override(HSV_RED, INDICATOR_BRIGHTNESS)},
+    {1, 6, HSV_RED},
     {7, 4, HSV_RED},
     {25, 2, HSV_RED},
-    {35+0, 6, HSV_RED},
+	{35+0, 1, value_override(HSV_RED, INDICATOR_BRIGHTNESS)},
+    {35+1, 6, HSV_RED},
     {35+7, 4, HSV_RED},
     {35+25, 2, HSV_RED}    
 );
 const rgblight_segment_t PROGMEM layer_colemakdh_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 20, HSV_PINK}
+	{0, 1, value_override(HSV_PINK, INDICATOR_BRIGHTNESS)},
+    {1, 20, HSV_PINK}
 );
 
 // _NUM,
 // Light on inner column and underglow 
 const rgblight_segment_t PROGMEM layer_num_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 6, HSV_TEAL},
+	{0, 1, value_override(HSV_TEAL, INDICATOR_BRIGHTNESS)},
+    {1, 6, HSV_TEAL},
     {7, 4, HSV_TEAL},
     {25, 2, HSV_TEAL},
-    {35+0, 6, HSV_TEAL},
+	{35+0, 1, value_override(HSV_TEAL, INDICATOR_BRIGHTNESS)},
+    {35+1, 6, HSV_TEAL},
     {35+7, 4, HSV_TEAL},
     {35+25, 2, HSV_TEAL}  
 );
@@ -369,7 +382,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 	rgblight_set_layer_state(7, layer_state_cmp(state, _DEFAULTS) && layer_state_cmp(default_layer_state,_COLEMAKDH));
 
     
-    //layer_state_cmp(state, 1));
 	rgblight_set_layer_state(1, layer_state_cmp(state, _LOWER));
 	rgblight_set_layer_state(2, layer_state_cmp(state, _RAISE));
 	rgblight_set_layer_state(3, layer_state_cmp(state, _ADJUST));
@@ -381,6 +393,13 @@ void keyboard_post_init_user(void) {
     // Enable the LED layers
     rgblight_layers = my_rgb_layers;
 	//rgblight_set_val(50);
+	
+	//to get current value:  rgblight_config.val
+	// I don't know if it works from here though 
+	
+	
+	
+	
 	rgblight_mode(10);// haven't found a way to set this in a more useful way 
 
 }
