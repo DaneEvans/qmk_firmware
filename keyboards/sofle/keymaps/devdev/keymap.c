@@ -7,7 +7,7 @@
 
 HSV override_value(HSV hsv, int Override)
   {
-    return (HSV){hsv.h, hsv.s, Override}
+    return (HSV){hsv.h, hsv.s, Override};
   }
 
 
