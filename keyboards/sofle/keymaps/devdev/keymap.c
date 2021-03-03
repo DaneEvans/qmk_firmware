@@ -8,8 +8,8 @@
 #define HSV_OVERRIDE_HELP(h, s, v, Override) h, s , Override   // not the right numkber of elements (get 2, want 4 ) 
 #define HSV_OVERRIDE(hsv, Override) HSV_OVERRIDE_HELP(hsv,Override)
 
-#define SET_INDICATORS(hsv) {0, 1, HSV_OVERRIDE(hsv, INDICATOR_BRIGHTNESS)}, \
-                            {35, 1, HSV_OVERRIDE(hsv, INDICATOR_BRIGHTNESS)} 
+#define SET_INDICATORS(hsv) {0, 1, HSV_OVERRIDE_HELP(hsv, INDICATOR_BRIGHTNESS)}, \
+                            {35, 1, HSV_OVERRIDE_HELP(hsv, INDICATOR_BRIGHTNESS)} 
 
 
 
