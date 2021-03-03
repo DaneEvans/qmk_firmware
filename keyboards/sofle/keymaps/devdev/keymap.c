@@ -5,7 +5,10 @@
 
 #define INDICATOR_BRIGHTNESS 20
 
-#define value_override(Hue, Sat, Val, Override) (Hue, Sat, Override) 
+#define RGB_WHITE 0xFF, 0xFF, 0xFF
+
+#define HS(Hue,Sat,Val) Hue, Sat
+#define value_override(HSV, Override) (HS(HSV), Override) 
 
 
 enum sofle_layers {
