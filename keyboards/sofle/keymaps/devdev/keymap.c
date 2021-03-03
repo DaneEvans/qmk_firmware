@@ -22,8 +22,17 @@ struct HSV
   }
   */
 
+#define ARG(...) { __VA_ARGS__ }
+#define override_value(h, s, v, Override) h, s , Override   // not the right numkber of elements (get 2, want 4 ) 
 
-#define override_value(h, s, v, Override) h, s , Override
+#define override_value_single(hsv, Override) override_value(hsv,Override)
+
+//#define unwrap(...) {__VA_ARGS__[0] , __VA_ARGS__[1], __VA_ARGS__[2]}
+
+
+
+
+
 
 
 #define TO_HSV( hsv) hsv // .h,hsv.s,hsv.v
@@ -301,28 +310,28 @@ char layer_state_str[70];
 // QWERTY,
 // Light on inner column and underglow 
 const rgblight_segment_t PROGMEM layer_qwerty_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-	{0, 1, TO_HSV(override_value(HSV_RED, INDICATOR_BRIGHTNESS))},
+	{0, 1, TO_HSV(override_value_single(HSV_RED, INDICATOR_BRIGHTNESS))},
     {1, 5, HSV_RED},
     {7, 4, HSV_RED},
     {25, 2, HSV_RED},
-	{35+0, 1, TO_HSV(override_value(HSV_RED, INDICATOR_BRIGHTNESS))},
+	{35+0, 1, TO_HSV(override_value_single(HSV_RED, INDICATOR_BRIGHTNESS))},
     {35+1, 5, HSV_RED},
     {35+7, 4, HSV_RED},
     {35+25, 2, HSV_RED}    
 );
 const rgblight_segment_t PROGMEM layer_colemakdh_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-	{0, 1, TO_HSV(override_value(HSV_PINK, INDICATOR_BRIGHTNESS))},
+	{0, 1, TO_HSV(override_value_single(HSV_PINK, INDICATOR_BRIGHTNESS))},
     {1, 19, HSV_PINK}
 );
 
 // _NUM,
 // Light on inner column and underglow 
 const rgblight_segment_t PROGMEM layer_num_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-	{0, 1, TO_HSV(override_value(HSV_TEAL, INDICATOR_BRIGHTNESS))},
+	{0, 1, TO_HSV(override_value_single(HSV_TEAL, INDICATOR_BRIGHTNESS))},
     {1, 5, HSV_TEAL},
     {7, 4, HSV_TEAL},
     {25, 2, HSV_TEAL},
-	{35+0, 1, TO_HSV(override_value(HSV_TEAL, INDICATOR_BRIGHTNESS))},
+	{35+0, 1, TO_HSV(override_value_single(HSV_TEAL, INDICATOR_BRIGHTNESS))},
     {35+1, 5, HSV_TEAL},
     {35+7, 4, HSV_TEAL},
     {35+25, 2, HSV_TEAL}  
@@ -330,11 +339,11 @@ const rgblight_segment_t PROGMEM layer_num_lights[] = RGBLIGHT_LAYER_SEGMENTS(
 // _SYMBOL,
 // Light on inner column and underglow 
 const rgblight_segment_t PROGMEM layer_symbol_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-	{0, 1, TO_HSV(override_value(HSV_BLUE, INDICATOR_BRIGHTNESS))},
+	{0, 1, TO_HSV(override_value_single(HSV_BLUE, INDICATOR_BRIGHTNESS))},
     {1, 5, HSV_BLUE},
     {7, 4, HSV_BLUE},
     {25, 2, HSV_BLUE},
-	{35+0, 1, TO_HSV(override_value(HSV_BLUE, INDICATOR_BRIGHTNESS))},
+	{35+0, 1, TO_HSV(override_value_single(HSV_BLUE, INDICATOR_BRIGHTNESS))},
     {35+1, 5, HSV_BLUE},
     {35+7, 4, HSV_BLUE},
     {35+25, 2, HSV_BLUE}  
@@ -342,11 +351,11 @@ const rgblight_segment_t PROGMEM layer_symbol_lights[] = RGBLIGHT_LAYER_SEGMENTS
 // _COMMAND,
 // Light on inner column and underglow 
 const rgblight_segment_t PROGMEM layer_command_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-	{0, 1, TO_HSV(override_value(HSV_PURPLE, INDICATOR_BRIGHTNESS))},
+	{0, 1, TO_HSV(override_value_single(HSV_PURPLE, INDICATOR_BRIGHTNESS))},
     {1, 5, HSV_PURPLE},
     {7, 4, HSV_PURPLE},
     {25, 2, HSV_PURPLE},
-	{35+0, 1, TO_HSV(override_value(HSV_PURPLE, INDICATOR_BRIGHTNESS))},
+	{35+0, 1, TO_HSV(override_value_single(HSV_PURPLE, INDICATOR_BRIGHTNESS))},
     {35+1, 5, HSV_PURPLE},
     {35+7, 4, HSV_PURPLE},
     {35+25, 2, HSV_PURPLE}  
@@ -354,11 +363,11 @@ const rgblight_segment_t PROGMEM layer_command_lights[] = RGBLIGHT_LAYER_SEGMENT
 
 //_NUMPAD
 const rgblight_segment_t PROGMEM layer_numpad_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-	{0, 1, TO_HSV(override_value(HSV_ORANGE, INDICATOR_BRIGHTNESS))},
+	{0, 1, TO_HSV(override_value_single(HSV_ORANGE, INDICATOR_BRIGHTNESS))},
     {1, 5, HSV_ORANGE},
     {7, 4, HSV_ORANGE},
     {25, 2, HSV_ORANGE},
-	{0, 1, TO_HSV(override_value(HSV_ORANGE, INDICATOR_BRIGHTNESS))},
+	{0, 1, TO_HSV(override_value_single(HSV_ORANGE, INDICATOR_BRIGHTNESS))},
     {35+0, 6, HSV_ORANGE},
     {35+6, 4, HSV_ORANGE},
     {35+25, 2, HSV_ORANGE},
@@ -381,11 +390,11 @@ const rgblight_segment_t PROGMEM layer_numpad_lights[] = RGBLIGHT_LAYER_SEGMENTS
 
 // _SWITCHER   // light up top row
 const rgblight_segment_t PROGMEM layer_switcher_lights[] = RGBLIGHT_LAYER_SEGMENTS( 
-	{0, 1, TO_HSV(override_value(HSV_GREEN, INDICATOR_BRIGHTNESS))},
+	{0, 1, TO_HSV(override_value_single(HSV_GREEN, INDICATOR_BRIGHTNESS))},
     {1, 5, HSV_GREEN},
     {7, 4, HSV_GREEN},
     {25, 2, HSV_GREEN},
-	{35+0, 1, TO_HSV(override_value(HSV_GREEN, INDICATOR_BRIGHTNESS))},
+	{35+0, 1, TO_HSV(override_value_single(HSV_GREEN, INDICATOR_BRIGHTNESS))},
     {35+1, 5, HSV_GREEN},
     {35+7, 4, HSV_GREEN},
     {35+25, 2, HSV_GREEN}  
