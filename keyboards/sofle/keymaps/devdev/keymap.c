@@ -285,7 +285,7 @@ char layer_state_str[70];
 // Light on inner column and underglow 
 const rgblight_segment_t PROGMEM layer_qwerty_lights[] = RGBLIGHT_LAYER_SEGMENTS(
   SET_INDICATORS(HSV_RED),
-    SET_UNDERGLOW(HSV_RED)
+    SET_UNDERGLOW(HSV_RED),
     {7, 4, HSV_RED},
     {25, 2, HSV_RED},
     {35+7, 4, HSV_RED},
