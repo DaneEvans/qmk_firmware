@@ -17,12 +17,12 @@ HSV override_value(int h, int s, int v, int Override)
     HSV hsv;
     hsv.h = h;
     hsv.s = s; 
-    hsv.v = Override
+    hsv.v = Override;
     return hsv;
   }
 
 
-#define TO_HSV(HSV) hsv.h,hsv.s,hsv.v
+#define TO_HSV(HSV hsv) hsv.h,hsv.s,hsv.v
 
 enum sofle_layers {
     /* _M_XYZ = Mac Os, _W_XYZ = Win/Linux */
