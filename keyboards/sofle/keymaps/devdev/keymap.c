@@ -3,27 +3,56 @@
 
 #include QMK_KEYBOARD_H
 
-#define INDICATOR_BRIGHTNESS 20
+#define INDICATOR_BRIGHTNESS 30
 
 #define HSV_OVERRIDE_HELP(h, s, v, Override) h, s , Override   // not the right numkber of elements (get 2, want 4 ) 
 #define HSV_OVERRIDE(hsv, Override) HSV_OVERRIDE_HELP(hsv,Override)
 
-#define SET_INDICATORS(hsv) {0, 1, HSV_OVERRIDE_HELP(hsv, INDICATOR_BRIGHTNESS)}, \
-                            {35, 1, HSV_OVERRIDE_HELP(hsv, INDICATOR_BRIGHTNESS)} 
+// Light combinations 
+#define SET_INDICATORS(hsv) \
+		{0, 1, HSV_OVERRIDE_HELP(hsv, INDICATOR_BRIGHTNESS)}, \
+     {35+0, 1, hsv} 
+#define SET_UNDERGLOW(hsv) \
+		{1, 5, hsv}, \
+     {35+1, 5,hsv} 		  
+#define SET_NUMPAD(hsv)     \
+	{35+15, 5, hsv},\
+	{35+22, 3, hsv},\
+	{35+27, 3, hsv}
+#define SET_NUMROW(hsv) \
+		{10, 2, hsv}, \
+		{20, 2, hsv}, \
+		{30, 2, hsv}, \
+	{35+ 10, 2, hsv}, \
+	{35+ 20, 2, hsv}, \
+	{35+ 30, 2, hsv}
+#define SET_INNER_COL(hsv)	\
+		{33, 4, hsv}, \
+	{35+ 33, 4, hsv}	
 
-#define SET_UNDERGLOW(hsv) {1, 5, HSV_OVERRIDE_HELP(hsv, INDICATOR_BRIGHTNESS)}, \
-                          {35+1, 5, HSV_OVERRIDE_HELP(hsv, INDICATOR_BRIGHTNESS)} 
+#define SET_OUTER_COL(hsv) \
+		{7, 4, hsv}, \
+	{35+ 7, 4, hsv}
+#define SET_THUMB_CLUSTER(hsv) 	\
+		{25, 2, hsv}, \
+	{35+ 25, 2, hsv}		
+#define SET_LAYER_ID(hsv) 	\
+		{0, 1, HSV_OVERRIDE_HELP(hsv, INDICATOR_BRIGHTNESS)}, \
+     {35+0, 1, HSV_OVERRIDE_HELP(hsv, INDICATOR_BRIGHTNESS)}, \
+		{1, 5, hsv}, \
+     {35+1, 5, hsv}, \
+		{7, 4, hsv}, \
+	{35+ 7, 4, hsv}, \
+		{25, 2, hsv}, \
+	{35+ 25, 2, hsv}					 
 
-
-
-//#define TO_HSV( hsv) hsv // .h,hsv.s,hsv.v
 
 enum sofle_layers {
     /* _M_XYZ = Mac Os, _W_XYZ = Win/Linux */
     _DEFAULTS = 0,
     _QWERTY = 0,
     _COLEMAK,
-	  _COLEMAKDH, 
+	_COLEMAKDH, 
     _LOWER,
     _RAISE,
     _ADJUST,
@@ -34,7 +63,7 @@ enum sofle_layers {
 enum custom_keycodes {
     KC_QWERTY = SAFE_RANGE,
     KC_COLEMAK,
-	  KC_COLEMAKDH,
+	KC_COLEMAKDH,
     KC_LOWER,
     KC_RAISE,
     KC_ADJUST,
@@ -62,8 +91,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
  *            `----------------------------------'           '------''---------------------------'
  */
-   
-[_QWERTY] = LAYOUT( \
+  [_QWERTY] = LAYOUT( \
   //,------------------------------------------------.                    ,---------------------------------------------------.
   KC_ESC,   KC_1,   KC_2,    KC_3,    KC_4,    KC_5,             LT(_SWITCH,KC_6), KC_7,   KC_8,    KC_9,    KC_0,    KC_GRV, \
   //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------| 
@@ -258,7 +286,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
  *            `----------------------------------'           '------''---------------------------'
  */
-  
   // layer switcher 
 [_SWITCH] = LAYOUT( \
   //,------------------------------------------------.                    ,---------------------------------------------------.
@@ -274,9 +301,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //            \--------+--------+--------+---------+-------|   |--------+---------+--------+---------+-------/  
 	
 	),	
+}; 
 
-
-};
 #ifdef RGBLIGHT_ENABLE
 char layer_state_str[70];
 // Now define the array of layers. Later layers take precedence
@@ -284,83 +310,45 @@ char layer_state_str[70];
 // QWERTY,
 // Light on inner column and underglow 
 const rgblight_segment_t PROGMEM layer_qwerty_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-  SET_INDICATORS(HSV_RED),
-    SET_UNDERGLOW(HSV_RED),
-    {7, 4, HSV_RED},
-    {25, 2, HSV_RED},
-    {35+7, 4, HSV_RED},
-    {35+25, 2, HSV_RED}    
+  SET_LAYER_ID(HSV_RED)
+  
 );
 const rgblight_segment_t PROGMEM layer_colemakdh_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-  SET_INDICATORS(HSV_PINK),
-    SET_UNDERGLOW(HSV_PINK),
-    {6, 13, HSV_PINK}
+  SET_LAYER_ID(HSV_PINK)
 );
 
 // _NUM,
-// Light on inner column and underglow 
+// Light on outer column and underglow 
 const rgblight_segment_t PROGMEM layer_num_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-	SET_INDICATORS(HSV_TEAL),
-    SET_UNDERGLOW(HSV_TEAL),
-    {7, 4, HSV_TEAL},
-    {25, 2, HSV_TEAL},
-    {35+7, 4, HSV_TEAL},
-    {35+25, 2, HSV_TEAL}  
+	SET_LAYER_ID(HSV_TEAL)
+ 
 );
 // _SYMBOL,
 // Light on inner column and underglow 
 const rgblight_segment_t PROGMEM layer_symbol_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-	SET_INDICATORS(HSV_BLUE),
-    SET_UNDERGLOW(HSV_BLUE),
-    {7, 4, HSV_BLUE},
-    {25, 2, HSV_BLUE},
-    {35+7, 4, HSV_BLUE},
-    {35+25, 2, HSV_BLUE}  
+	SET_LAYER_ID(HSV_BLUE)
+    
     );
 // _COMMAND,
 // Light on inner column and underglow 
 const rgblight_segment_t PROGMEM layer_command_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-  SET_INDICATORS(HSV_PURPLE),
-    SET_UNDERGLOW(HSV_PURPLE),
-    {7, 4, HSV_PURPLE},
-    {25, 2, HSV_PURPLE},
-    {35+7, 4, HSV_PURPLE},
-    {35+25, 2, HSV_PURPLE}  
+  SET_LAYER_ID(HSV_PURPLE)
 );
 
 //_NUMPAD
 const rgblight_segment_t PROGMEM layer_numpad_lights[] = RGBLIGHT_LAYER_SEGMENTS(
 	SET_INDICATORS(HSV_ORANGE),
     SET_UNDERGLOW(HSV_ORANGE),
+	SET_NUMPAD(HSV_BLUE),
     {7, 4, HSV_ORANGE},
     {25, 2, HSV_ORANGE},
     {35+6, 4, HSV_ORANGE},
-    {35+25, 2, HSV_ORANGE},
-    {35+15, 5, HSV_BLUE},
-    {35+22, 3, HSV_BLUE},
-    {35+27, 3, HSV_BLUE}
+    {35+25, 2, HSV_ORANGE}
     );
-//const rgblight_segment_t PROGMEM layer_numpad_rh_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-//	{0, 11, HSV_ORANGE}
-//	{10, 3, HSV_BLUE},
-//    {15, 3, HSV_BLUE},
-//	{18, 3, HSV_BLUE}
-//);
-
-// _MOVE,
-// Light on inner column and underglow 
-//const rgblight_segment_t PROGMEM layer_move_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-//    {0, 11, HSV_PINK}
-//);
-
 // _SWITCHER   // light up top row
 const rgblight_segment_t PROGMEM layer_switcher_lights[] = RGBLIGHT_LAYER_SEGMENTS( 
-	SET_INDICATORS(HSV_GREEN),
-    SET_UNDERGLOW(HSV_GREEN),
-    {7, 4, HSV_GREEN},
-    {25, 2, HSV_GREEN},
-    {35+7, 4, HSV_GREEN},
-    {35+25, 2, HSV_GREEN}  
+	SET_LAYER_ID(HSV_GREEN), 
+	SET_NUMROW(HSV_GREEN)
 );
 
 const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
