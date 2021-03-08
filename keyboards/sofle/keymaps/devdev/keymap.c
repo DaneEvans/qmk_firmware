@@ -29,7 +29,6 @@
 #define SET_INNER_COL(hsv)	\
 		{33, 4, hsv}, \
 	{35+ 33, 4, hsv}	
-
 #define SET_OUTER_COL(hsv) \
 		{7, 4, hsv}, \
 	{35+ 7, 4, hsv}
@@ -52,7 +51,7 @@ enum sofle_layers {
     _DEFAULTS = 0,
     _QWERTY = 0,
     _COLEMAK,
-	_COLEMAKDH, 
+	  _COLEMAKDH, 
     _LOWER,
     _RAISE,
     _ADJUST,
@@ -63,7 +62,7 @@ enum sofle_layers {
 enum custom_keycodes {
     KC_QWERTY = SAFE_RANGE,
     KC_COLEMAK,
-	KC_COLEMAKDH,
+	  KC_COLEMAKDH,
     KC_LOWER,
     KC_RAISE,
     KC_ADJUST,
@@ -76,8 +75,7 @@ enum custom_keycodes {
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-/*
- * QWERTY
+/* QWERTY
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * | ESC  |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  `   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
@@ -105,8 +103,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //            \--------+--------+--------+---------+-------|   |--------+---------+--------+---------+-------/  
 ),
 
-/*
- * COLEMAK
+/* COLEMAK
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * | ESC  |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  `   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
@@ -120,7 +117,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
  *            `----------------------------------'           '------''---------------------------'
  */
-[_COLEMAK] = LAYOUT( \
+ [_COLEMAK] = LAYOUT( \
   //,------------------------------------------------.                    ,---------------------------------------------------.
   KC_TRNS,  KC_1,   KC_2,    KC_3,    KC_4,    KC_5,                      LT(_SWITCH,KC_6),    KC_7,   KC_8,    KC_9,    KC_0,    KC_TRNS, \
   //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------| 
@@ -134,8 +131,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //            \--------+--------+--------+---------+-------|   |--------+---------+--------+---------+-------/  
 ),
 
-/*
- * COLEMAK-DH
+/* COLEMAK-DH
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * | ESC  |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  `   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
@@ -149,7 +145,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
  *            `----------------------------------'           '------''---------------------------'
  */
-[_COLEMAKDH] = LAYOUT( \
+ [_COLEMAKDH] = LAYOUT( \
   //,------------------------------------------------.                    ,---------------------------------------------------.
   KC_TRNS,  KC_1,   KC_2,    KC_3,    KC_4,    KC_5,                      LT(_SWITCH,KC_6),    KC_7,   KC_8,    KC_9,    KC_0,    KC_TRNS, \
   //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------| 
@@ -177,7 +173,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
  *            `----------------------------------'           '------''---------------------------'
  */
-[_LOWER] = LAYOUT( \
+ [_LOWER] = LAYOUT( \
   //,------------------------------------------------.                    ,---------------------------------------------------.
   _______,  KC_F1,  KC_F2,   KC_F3,   KC_F4,   KC_F5,                     KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,\
   //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------| 
@@ -204,7 +200,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
  *            `----------------------------------'           '------''---------------------------'
  */
-[_RAISE] = LAYOUT( \
+ [_RAISE] = LAYOUT( \
   //,------------------------------------------------.                    ,---------------------------------------------------.
   _______, _______ , _______ , _______ , _______ , _______,               _______,  _______  , _______,  _______ ,  _______ ,_______, \
   //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------| 
@@ -258,7 +254,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
  *            `----------------------------------'           '------''---------------------------'
  */
-[_NUMPAD] = LAYOUT( \
+ [_NUMPAD] = LAYOUT( \
   //,------------------------------------------------.                    ,---------------------------------------------------.
   _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,XXXXXXX, XXXXXXX,\
   //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------| 
@@ -287,7 +283,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *            `----------------------------------'           '------''---------------------------'
  */
   // layer switcher 
-[_SWITCH] = LAYOUT( \
+ [_SWITCH] = LAYOUT( \
   //,------------------------------------------------.                    ,---------------------------------------------------.
   _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,XXXXXXX, XXXXXXX,\
   //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------| 
@@ -316,19 +312,19 @@ const rgblight_segment_t PROGMEM layer_qwerty_lights[] = RGBLIGHT_LAYER_SEGMENTS
 const rgblight_segment_t PROGMEM layer_colemakdh_lights[] = RGBLIGHT_LAYER_SEGMENTS(
   SET_LAYER_ID(HSV_PINK)
 );
-
+const rgblight_segment_t PROGMEM layer_colemak_lights[] = RGBLIGHT_LAYER_SEGMENTS(
+  SET_LAYER_ID(HSV_PURPLE)
+);
 // _NUM,
 // Light on outer column and underglow 
 const rgblight_segment_t PROGMEM layer_num_lights[] = RGBLIGHT_LAYER_SEGMENTS(
 	SET_LAYER_ID(HSV_TEAL)
- 
 );
 // _SYMBOL,
 // Light on inner column and underglow 
 const rgblight_segment_t PROGMEM layer_symbol_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-	SET_LAYER_ID(HSV_BLUE)
-    
-    );
+	SET_LAYER_ID(HSV_BLUE) 
+);
 // _COMMAND,
 // Light on inner column and underglow 
 const rgblight_segment_t PROGMEM layer_command_lights[] = RGBLIGHT_LAYER_SEGMENTS(
@@ -338,7 +334,7 @@ const rgblight_segment_t PROGMEM layer_command_lights[] = RGBLIGHT_LAYER_SEGMENT
 //_NUMPAD
 const rgblight_segment_t PROGMEM layer_numpad_lights[] = RGBLIGHT_LAYER_SEGMENTS(
 	SET_INDICATORS(HSV_ORANGE),
-    SET_UNDERGLOW(HSV_ORANGE),
+  SET_UNDERGLOW(HSV_ORANGE),
 	SET_NUMPAD(HSV_BLUE),
     {7, 4, HSV_ORANGE},
     {25, 2, HSV_ORANGE},
@@ -353,18 +349,20 @@ const rgblight_segment_t PROGMEM layer_switcher_lights[] = RGBLIGHT_LAYER_SEGMEN
 
 const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
 
-    layer_qwerty_lights, 
+  layer_qwerty_lights, 
 	layer_num_lights,// overrides layer 1
 	layer_symbol_lights,
-    layer_command_lights,       
+  layer_command_lights,       
 	layer_numpad_lights, 
 	layer_switcher_lights,  // Overrides other layers
-	layer_colemakdh_lights
+	layer_colemakdh_lights,
+  layer_colemak_lights
 );
 
 layer_state_t layer_state_set_user(layer_state_t state) {
 	rgblight_set_layer_state(0, layer_state_cmp(state, _DEFAULTS) && layer_state_cmp(default_layer_state,_QWERTY));
-	rgblight_set_layer_state(7, layer_state_cmp(state, _DEFAULTS) && layer_state_cmp(default_layer_state,_COLEMAKDH));
+  rgblight_set_layer_state(6, layer_state_cmp(state, _DEFAULTS) && layer_state_cmp(default_layer_state,_COLEMAKDH));
+	rgblight_set_layer_state(7, layer_state_cmp(state, _DEFAULTS) && layer_state_cmp(default_layer_state,_COLEMAK));
 
     
 	rgblight_set_layer_state(1, layer_state_cmp(state, _LOWER));
