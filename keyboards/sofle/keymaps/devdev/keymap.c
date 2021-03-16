@@ -1,6 +1,51 @@
 // SOFLE
+#include <stdio.h>
 
 #include QMK_KEYBOARD_H
+
+#define INDICATOR_BRIGHTNESS 30
+
+#define HSV_OVERRIDE_HELP(h, s, v, Override) h, s , Override   // not the right numkber of elements (get 2, want 4 ) 
+#define HSV_OVERRIDE(hsv, Override) HSV_OVERRIDE_HELP(hsv,Override)
+
+// Light combinations 
+#define SET_INDICATORS(hsv) \
+		{0, 1, HSV_OVERRIDE_HELP(hsv, INDICATOR_BRIGHTNESS)}, \
+     {35+0, 1, hsv} 
+#define SET_UNDERGLOW(hsv) \
+		{1, 5, hsv}, \
+     {35+1, 5,hsv} 		  
+#define SET_NUMPAD(hsv)     \
+	{35+15, 5, hsv},\
+	{35+22, 3, hsv},\
+	{35+27, 3, hsv}
+#define SET_NUMROW(hsv) \
+		{10, 2, hsv}, \
+		{20, 2, hsv}, \
+		{30, 2, hsv}, \
+	{35+ 10, 2, hsv}, \
+	{35+ 20, 2, hsv}, \
+	{35+ 30, 2, hsv}
+#define SET_INNER_COL(hsv)	\
+		{33, 4, hsv}, \
+	{35+ 33, 4, hsv}	
+
+#define SET_OUTER_COL(hsv) \
+		{7, 4, hsv}, \
+	{35+ 7, 4, hsv}
+#define SET_THUMB_CLUSTER(hsv) 	\
+		{25, 2, hsv}, \
+	{35+ 25, 2, hsv}		
+#define SET_LAYER_ID(hsv) 	\
+		{0, 1, HSV_OVERRIDE_HELP(hsv, INDICATOR_BRIGHTNESS)}, \
+     {35+0, 1, HSV_OVERRIDE_HELP(hsv, INDICATOR_BRIGHTNESS)}, \
+		{1, 5, hsv}, \
+     {35+1, 5, hsv}, \
+		{7, 4, hsv}, \
+	{35+ 7, 4, hsv}, \
+		{25, 2, hsv}, \
+	{35+ 25, 2, hsv}					 
+
 
 enum sofle_layers {
     /* _M_XYZ = Mac Os, _W_XYZ = Win/Linux */
@@ -30,7 +75,6 @@ enum custom_keycodes {
     KC_D_MUTE
 };
 
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*
  * QWERTY
@@ -47,8 +91,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
  *            `----------------------------------'           '------''---------------------------'
  */
-   
-[_QWERTY] = LAYOUT( \
+  [_QWERTY] = LAYOUT( \
   //,------------------------------------------------.                    ,---------------------------------------------------.
   KC_ESC,   KC_1,   KC_2,    KC_3,    KC_4,    KC_5,             LT(_SWITCH,KC_6), KC_7,   KC_8,    KC_9,    KC_0,    KC_GRV, \
   //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------| 
@@ -61,10 +104,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                  KC_BSPC, KC_LGUI, KC_LOWER, KC_SPC,  KC_ENT   ,     KC_SPC, KC_ENT ,  KC_RAISE, KC_RCTRL, KC_RALT \
   //            \--------+--------+--------+---------+-------|   |--------+---------+--------+---------+-------/  
 ),
-
-
-
-
 
 /*
  * COLEMAK
@@ -81,7 +120,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
  *            `----------------------------------'           '------''---------------------------'
  */
-
 [_COLEMAK] = LAYOUT( \
   //,------------------------------------------------.                    ,---------------------------------------------------.
   KC_TRNS,  KC_1,   KC_2,    KC_3,    KC_4,    KC_5,                      LT(_SWITCH,KC_6),    KC_7,   KC_8,    KC_9,    KC_0,    KC_TRNS, \
@@ -101,17 +139,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * | ESC  |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  `   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | TAB  |   Q  |   W  |   F  |   P  |   G  |                    |   J  |   L  |   U  |   Y  |   ;  | Bspc |
+ * | TAB  |   Q  |   W  |   F  |   P  |   B  |                    |   J  |   L  |   U  |   Y  |   ;  | Bspc |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |LShift|   A  |   R  |   S  |   T  |   D  |-------.    ,-------|   H  |   N  |   E  |   I  |   O  |  '   |
+ * |LShift|   A  |   R  |   S  |   T  |   G  |-------.    ,-------|   M  |   N  |   E  |   I  |   O  |  '   |
  * |------+------+------+------+------+------|  MUTE |    |DISCORD|------+------+------+------+------+------|
- * | LCTR |   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   K  |   M  |   ,  |   .  |   /  |LShift|
+ * | LCTR |   Z  |   X  |   C  |   D  |   V  |-------|    |-------|   K  |   H  |   ,  |   .  |   /  |LShift|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *            | Bspc | WIN  |LOWER | Enter| /Space  /       \Enter \  |SPACE |RAISE | RCTR | RAlt |
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
  *            `----------------------------------'           '------''---------------------------'
  */
-
 [_COLEMAKDH] = LAYOUT( \
   //,------------------------------------------------.                    ,---------------------------------------------------.
   KC_TRNS,  KC_1,   KC_2,    KC_3,    KC_4,    KC_5,                      LT(_SWITCH,KC_6),    KC_7,   KC_8,    KC_9,    KC_0,    KC_TRNS, \
@@ -249,7 +286,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
  *            `----------------------------------'           '------''---------------------------'
  */
-  
   // layer switcher 
 [_SWITCH] = LAYOUT( \
   //,------------------------------------------------.                    ,---------------------------------------------------.
@@ -265,9 +301,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //            \--------+--------+--------+---------+-------|   |--------+---------+--------+---------+-------/  
 	
 	),	
+}; 
 
-
-};
 #ifdef RGBLIGHT_ENABLE
 char layer_state_str[70];
 // Now define the array of layers. Later layers take precedence
@@ -275,81 +310,45 @@ char layer_state_str[70];
 // QWERTY,
 // Light on inner column and underglow 
 const rgblight_segment_t PROGMEM layer_qwerty_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 6, HSV_RED},
-    {7, 4, HSV_RED},
-    {25, 2, HSV_RED},
-    {35+0, 6, HSV_RED},
-    {35+7, 4, HSV_RED},
-    {35+25, 2, HSV_RED}    
+  SET_LAYER_ID(HSV_RED)
+  
 );
 const rgblight_segment_t PROGMEM layer_colemakdh_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 20, HSV_PINK}
+  SET_LAYER_ID(HSV_PINK)
 );
 
 // _NUM,
-// Light on inner column and underglow 
+// Light on outer column and underglow 
 const rgblight_segment_t PROGMEM layer_num_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 6, HSV_TEAL},
-    {7, 4, HSV_TEAL},
-    {25, 2, HSV_TEAL},
-    {35+0, 6, HSV_TEAL},
-    {35+7, 4, HSV_TEAL},
-    {35+25, 2, HSV_TEAL}  
+	SET_LAYER_ID(HSV_TEAL)
+ 
 );
 // _SYMBOL,
 // Light on inner column and underglow 
 const rgblight_segment_t PROGMEM layer_symbol_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 6, HSV_BLUE},
-    {7, 4, HSV_BLUE},
-    {25, 2, HSV_BLUE},
-    {35+0, 6, HSV_BLUE},
-    {35+7, 4, HSV_BLUE},
-    {35+25, 2, HSV_BLUE}  
+	SET_LAYER_ID(HSV_BLUE)
+    
     );
 // _COMMAND,
 // Light on inner column and underglow 
 const rgblight_segment_t PROGMEM layer_command_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 6, HSV_PURPLE},
-    {7, 4, HSV_PURPLE},
-    {25, 2, HSV_PURPLE},
-    {35+0, 6, HSV_PURPLE},
-    {35+7, 4, HSV_PURPLE},
-    {35+25, 2, HSV_PURPLE}  
+  SET_LAYER_ID(HSV_PURPLE)
 );
 
 //_NUMPAD
 const rgblight_segment_t PROGMEM layer_numpad_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 6, HSV_ORANGE},
+	SET_INDICATORS(HSV_ORANGE),
+    SET_UNDERGLOW(HSV_ORANGE),
+	SET_NUMPAD(HSV_BLUE),
     {7, 4, HSV_ORANGE},
     {25, 2, HSV_ORANGE},
-    {35+0, 6, HSV_ORANGE},
-    {35+7, 4, HSV_ORANGE},
-    {35+25, 2, HSV_ORANGE},
-    {35+15, 5, HSV_BLUE},
-    {35+22, 3, HSV_BLUE},
-    {35+27, 3, HSV_BLUE}
+    {35+6, 4, HSV_ORANGE},
+    {35+25, 2, HSV_ORANGE}
     );
-//const rgblight_segment_t PROGMEM layer_numpad_rh_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-//	{0, 11, HSV_ORANGE}
-//	{10, 3, HSV_BLUE},
-//    {15, 3, HSV_BLUE},
-//	{18, 3, HSV_BLUE}
-//);
-
-// _MOVE,
-// Light on inner column and underglow 
-//const rgblight_segment_t PROGMEM layer_move_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-//    {0, 11, HSV_PINK}
-//);
-
 // _SWITCHER   // light up top row
 const rgblight_segment_t PROGMEM layer_switcher_lights[] = RGBLIGHT_LAYER_SEGMENTS( 
-    {0, 6, HSV_GREEN},
-    {7, 4, HSV_GREEN},
-    {25, 2, HSV_GREEN},
-    {35+0, 6, HSV_GREEN},
-    {35+7, 4, HSV_GREEN},
-    {35+25, 2, HSV_GREEN}  
+	SET_LAYER_ID(HSV_GREEN), 
+	SET_NUMROW(HSV_GREEN)
 );
 
 const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
@@ -368,7 +367,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 	rgblight_set_layer_state(7, layer_state_cmp(state, _DEFAULTS) && layer_state_cmp(default_layer_state,_COLEMAKDH));
 
     
-    //layer_state_cmp(state, 1));
 	rgblight_set_layer_state(1, layer_state_cmp(state, _LOWER));
 	rgblight_set_layer_state(2, layer_state_cmp(state, _RAISE));
 	rgblight_set_layer_state(3, layer_state_cmp(state, _ADJUST));
@@ -379,7 +377,15 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 void keyboard_post_init_user(void) {
     // Enable the LED layers
     rgblight_layers = my_rgb_layers;
-	rgblight_mode(1);// haven't found a way to set this in a more useful way 
+	//rgblight_set_val(50);
+	
+	//to get current value:  rgblight_config.val
+	// I don't know if it works from here though 
+	
+	
+	
+	
+	rgblight_mode(10);// haven't found a way to set this in a more useful way 
 
 }
 #endif
@@ -400,6 +406,7 @@ static void print_status_narrow(void) {
     // Print current mode
     oled_write_P(PSTR("\n\n"), false);
     oled_write_ln_P(PSTR("Dane\nEvans"), false);
+
     //oled_write_ln_P(PSTR("MODE"), false);
     oled_write_ln_P(PSTR(""), false);
     /*
@@ -409,6 +416,14 @@ static void print_status_narrow(void) {
         oled_write_ln_P(PSTR("WIN"), false);
     }
     */
+	uint8_t val = rgblight_get_val(); 
+	char string[10];
+	sprintf(string, "Bgt: %d",val) ; 
+	//string = ("Bright: %ld",val) ; 
+	oled_write_ln(string,false);
+	
+	//snprintf(layer_state_str, sizeof(layer_state_str), "Layer: Undef-%ld", layer_state)
+	
 
     switch (get_highest_layer(default_layer_state)) {
         case _QWERTY:
@@ -422,7 +437,7 @@ static void print_status_narrow(void) {
             break;			
 			
         default:
-            oled_write_P(PSTR("Undef"), false);
+            oled_write_ln_P(PSTR("Undef"), false);
     }
     oled_write_P(PSTR("\n\n"), false);
     // Print current layer
@@ -450,11 +465,6 @@ static void print_status_narrow(void) {
         default:
             oled_write_ln_P(PSTR("Undef"), false);
     }
-    /*
-    oled_write_P(PSTR("\n\n"), false);
-    led_t led_usb_state = host_keyboard_led_state();
-    oled_write_ln_P(PSTR("CPSLK"), led_usb_state.caps_lock);
-    */
 }
 
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
