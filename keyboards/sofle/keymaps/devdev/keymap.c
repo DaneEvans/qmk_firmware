@@ -477,8 +477,8 @@ void oled_task_user(void) {
 #endif
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-	static uint8_t saved_mods   = 0;
-    uint16_t       temp_keycode = keycode
+	//static uint8_t saved_mods   = 0;
+    //uint16_t       temp_keycode = keycode;
 	
     switch (keycode) {
         case KC_QWERTY:
