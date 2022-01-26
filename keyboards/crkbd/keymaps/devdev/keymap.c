@@ -124,20 +124,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	// numpad 
 	[_NUMPAD] = LAYOUT( \
 	//,-----------------------------------------------------.                    ,-----------------------------------------------------.
-	LT(0,KC_NO),   KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_NO, 					   KC_CIRC,   KC_P7,   KC_P8,   KC_P9, KC_ASTR, KC_BSPC, \
+	LT(0,KC_NO),   KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_NO, 					   KC_CIRC,   KC_7,   KC8,   KC_9, KC_ASTR, KC_BSPC, \
 	//|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-	      KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, 					   KC_MINS,   KC_P4,   KC_P5,   KC_P6,  KC_EQL,  KC_DEL, \
+	      KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, 					   KC_MINS,   KC_4,   KC_5,   KC_6,  KC_EQL,  KC_DEL, \
 	//|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|	  
-		  KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, 					   KC_PLUS,   KC_P1,   KC_P2,   KC_P3, KC_SLSH,   KC_NO, \
+		  KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, 					   KC_PLUS,   KC_1,   KC_2,   KC_3, KC_SLSH,   KC_NO, \
 	//|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|		  
-									   OSM(MOD_MEH),   KC_NO,   KC_TRNS,     KC_ENT,   KC_P0,  KC_PDOT \
+									   OSM(MOD_MEH),   KC_NO,   KC_TRNS,     KC_ENT,   KC_0,  KC_PDOT \
 										//`--------------------------'  `--------------------------'
 	),	  
 		  
 	// layer switcher 
 	[_SWITCH] = LAYOUT(\
 	//,-----------------------------------------------------.                    ,-----------------------------------------------------.
-	      TO(0),   TO(1),   TO(2),   TO(3),   TO(4),   TO(5), 					     KC_NO,   TO(7),   KC_NO,   KC_NO,   KC_NO,   RESET,  \
+	      TO(_DEFAULTS),TO(_NUM),TO(_SYM),TO(_COMMAND),TO(_NUMPAD),TO(_MOVE), 	    KC_NO,   TO(7),   KC_NO,   KC_NO,   KC_NO,   RESET,  \
 	//|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
 	      KC_NO,   KC_NO, KC_BRIU,   KC_NO,   KC_NO,   KC_NO, 						 KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, EEP_RST, \
 	//|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|

@@ -273,13 +273,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,------------------------------------------------.                    ,---------------------------------------------------.
   _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,XXXXXXX, XXXXXXX,\
   //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------| 
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   KC_CIRC, KC_P7,  KC_P8,   KC_P9,   KC_ASTR, _______, \
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   KC_CIRC, KC_7,  KC_8,   KC_9,   KC_ASTR, _______, \
   //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------| 
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   KC_MINS, KC_P4,  KC_P5,   KC_P6,   KC_EQL,  KC_PIPE, \
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   KC_MINS, KC_4,  KC_5,   KC_6,   KC_EQL,  KC_PIPE, \
   //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------| 
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,_______,    _______,KC_PLUS, KC_P1, KC_P2,   KC_P3,   KC_SLSH, _______, \
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,_______,    _______,KC_PLUS, KC_1, KC_2,   KC_3,   KC_SLSH, _______, \
   //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------| 
-                 _______, OSM(MOD_MEH), _______, _______, _______,     _______, _______, KC_P0, KC_PDOT, _______\
+                 _______, OSM(MOD_MEH), _______, _______, _______,     _______, _______, KC_0, KC_PDOT, _______\
   //            \--------+--------+--------+---------+-------|   |--------+---------+--------+---------+-------/  
 ),
 
@@ -297,12 +297,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
  *            `----------------------------------'           '------''---------------------------'
  */
+ _DEFAULTS
   // layer switcher 
 [_SWITCH] = LAYOUT( \
   //,------------------------------------------------.                    ,---------------------------------------------------.
   _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,XXXXXXX, XXXXXXX,\
   //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------| 
-  TO(0),   TO(1),   TO(2),   TO(3),   TO(4),   TO(5), 					  KC_NO,   TO(7),   KC_NO,   KC_NO,   KC_NO,   RESET,  \
+  TO(_DEFAULTS),TO(_LOWER),TO(_RAISE),TO(_ADJUST),TO(_NUMPAD),KC_NO, 	  KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   RESET,  \
   //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------| 
   KC_NO,   KC_NO, KC_BRIU,   KC_NO,   KC_NO,   KC_NO, 					  KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, EEP_RST, \
   //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------| 
@@ -523,11 +524,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
         case KC_D_MUTE:
             if (record->event.pressed) {
-                register_mods(mod_config(MOD_RCS));
-                register_code(KC_M);
+
+                //register_mods(mod_config(MOD_RCS));
+                register_code(C(S(KC_M)));
             } else {
-                unregister_mods(mod_config(MOD_RCS));
-                unregister_code(KC_M);
+                //unregister_mods(mod_config(MOD_RCS));
+                unregister_code(C(S(KC_M)));
             }
 		case KC_SMART_BSP:
             if (record->event.pressed) {
