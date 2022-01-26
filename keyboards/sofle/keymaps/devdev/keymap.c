@@ -297,7 +297,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
  *            `----------------------------------'           '------''---------------------------'
  */
- _DEFAULTS
   // layer switcher 
 [_SWITCH] = LAYOUT( \
   //,------------------------------------------------.                    ,---------------------------------------------------.
@@ -479,7 +478,7 @@ void oled_task_user(void) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	static uint8_t saved_mods   = 0;
-    uint16_t       temp_keycode = keycode;
+    //uint16_t       temp_keycode = keycode;
 	
     switch (keycode) {
         case KC_QWERTY:
@@ -525,11 +524,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case KC_D_MUTE:
             if (record->event.pressed) {
 
-                //register_mods(mod_config(MOD_RCS));
-                register_code(C(S(KC_M)));
+                register_mods(MOD_RCTL);
+				register_mods(MOD_RSFT);
+                register_code(KC_M);
             } else {
-                //unregister_mods(mod_config(MOD_RCS));
-                unregister_code(C(S(KC_M)));
+                unregister_mods(MOD_RCTL);
+				unregister_mods(MOD_RSFT);
+                unregister_code(KC_M);
             }
 		case KC_SMART_BSP:
             if (record->event.pressed) {

@@ -124,7 +124,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	// numpad 
 	[_NUMPAD] = LAYOUT( \
 	//,-----------------------------------------------------.                    ,-----------------------------------------------------.
-	LT(0,KC_NO),   KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_NO, 					   KC_CIRC,   KC_7,   KC8,   KC_9, KC_ASTR, KC_BSPC, \
+	LT(0,KC_NO),   KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_NO, 					   KC_CIRC,   KC_7,   KC_8,   KC_9, KC_ASTR, KC_BSPC, \
 	//|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
 	      KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, 					   KC_MINS,   KC_4,   KC_5,   KC_6,  KC_EQL,  KC_DEL, \
 	//|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|	  
