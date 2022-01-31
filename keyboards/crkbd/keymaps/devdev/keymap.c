@@ -24,8 +24,8 @@ char layer_state_str[24];
  
   enum userspace_layers {
     _DEFAULTS = 0,
-	_COLEMAK = 0,
-	_COLEMAKDH, 
+	_COLEMAKDH = 0, 
+	_COLEMAK,
     _QWERTY,
     _NUM,
     _SYM,
@@ -37,11 +37,10 @@ char layer_state_str[24];
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-	
 		// colemak 
 	[_COLEMAK] = LAYOUT( \
 	//,-----------------------------------------------------.                    ,-----------------------------------------------------.
-	    LT(_NUMPAD,KC_TAB), 	KC_Q, 	 KC_W, 	  KC_F,    KC_P,    KC_G, 					LT(_SWITCH,KC_J),    KC_L,    KC_U,    KC_Y, KC_SCLN, KC_BSPC,  \
+	    LT(_NUMPAD,KC_TAB), 	KC_Q, 	 KC_W, 	  KC_F,    KC_P,    KC_G, 		LT(_SWITCH,KC_J),    KC_L,    KC_U,    KC_Y, KC_SCLN, KC_BSPC,  \
 	//|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
 	    KC_LSFT,    KC_A,    KC_R,    KC_S,    KC_T,    KC_D, 						  KC_H,    KC_N,    KC_E,    KC_I,LT(_NUMPAD,KC_O),KC_QUOT, \
 	//|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|		
@@ -55,7 +54,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			// colemak DH
 	[_COLEMAKDH] = LAYOUT( \
 	//,-----------------------------------------------------.                    ,-----------------------------------------------------.
-	    LT(_NUMPAD,KC_TAB), 	KC_Q, 	 KC_W, 	  KC_F,    KC_P,    KC_B, 					LT(_SWITCH,KC_J),    KC_L,    KC_U,    KC_Y, KC_SCLN, KC_BSPC,  \
+	    LT(_NUMPAD,KC_TAB), 	KC_Q, 	 KC_W, 	  KC_F,    KC_P,    KC_B, 		LT(_SWITCH,KC_J),    KC_L,    KC_U,    KC_Y, KC_SCLN, KC_BSPC,  \
 	//|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
 	    KC_LSFT,    KC_A,    KC_R,    KC_S,    KC_T,    KC_G, 						  KC_M,    KC_N,    KC_E,    KC_I,LT(_NUMPAD,KC_O),KC_QUOT, \
 	//|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|		
@@ -88,7 +87,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	//|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
 	    KC_TRNS,   KC_NO,   KC_NO,   KC_NO,   KC_WH_U,   KC_PGUP, 				   KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT,   KC_NO,  KC_DEL,  \
 	//|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-		KC_TRNS,   KC_NO,   KC_NO,   KC_NO,   KC_WH_D,   KC_PGDN,					     KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,  \
+		KC_TRNS,   KC_NO,   KC_NO,   KC_NO,   KC_WH_D,   KC_PGDN,				   KC_HOME,   KC_NO,   KC_NO,  KC_END,   KC_NO,   KC_NO,  \
 	//|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
 											KC_TRNS, KC_TRNS,  KC_TRNS,     KC_TRNS,   MO(_COMMAND), KC_TRNS  \
 										//`--------------------------'  `--------------------------'
@@ -113,7 +112,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	      RESET,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5, 						 KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_NO, \
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
 
-	    RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI,   DF(1),   DF(0), 					 C(G(KC_LEFT)),   KC_NO,   KC_NO,   C(G(KC_RGHT)),   KC_NO,   KC_NO, \
+	    RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI,   DF(0),   DF(1), 					 C(G(KC_LEFT)),   KC_NO,   KC_NO,   C(G(KC_RGHT)),   KC_NO,   KC_NO, \
 	//|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
 		RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD,   KC_NO,   DF(2), 					     KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, \
 	//|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
