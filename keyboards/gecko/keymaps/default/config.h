@@ -24,6 +24,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 //#define QUICK_TAP_TERM 0
 //#define TAPPING_TERM 100
+#define ENCODER_MAP_ENABLE 
+#define ENCODER_RESOLUTION 4
+#define ENCODER_DIRECTION_FLIP
+#define NUM_ENCODERS 4
 
 #ifdef RGBLIGHT_ENABLE
     #define RGBLIGHT_EFFECT_BREATHING

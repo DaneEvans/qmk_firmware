@@ -24,11 +24,11 @@
         "layer_count": 6
     },
     "matrix_pins": {
-        "direct":[ // FIXME : Side buttons. remap to bottom. 
-            ["GP22", "GP20", "GP23", "GP26", "GP29",  "GP0",  "GP4"],
-            ["GP19", "GP18", "GP24", "GP27",  "GP1",  "GP2",  "GP8"],
-            ["GP17", "GP16", "GP25", "GP28",  "GP3",  "GP9",   null],
-            [  null,   null,   null, "GP14", "GP15", "GP11",   null]
+        "direct":[
+            ["GP22", "GP20", "GP23", "GP26", "GP29",  "GP0"],
+            ["GP19", "GP18", "GP24", "GP27",  "GP1",  "GP2"],
+            ["GP17", "GP16", "GP25", "GP28",  "GP3",  "GP9"],
+            ["GP4",   "GP8",   null, "GP14", "GP15", "GP11"]
         ]
     },
     "encoder": {
@@ -52,10 +52,10 @@
         "matrix_pins": {
             "right": {
                 "direct": [
-                    [ "GP8",  "GP9",  "GP3",  "GP2",  "GP1", "GP27", "GP25"],
-                    ["GP11", "GP14",  "GP4",  "GP0", "GP28", "GP26", "GP23"],
-                    ["GP15", "GP18",  "GP5", "GP29", "GP20", "GP22",   null],
-                    [  null,   null,   null, "GP16", "GP17", "GP19",   null]
+                    [ "GP8",  "GP9",  "GP3",  "GP2",  "GP1", "GP27"],
+                    ["GP11", "GP14",  "GP4",  "GP0", "GP28", "GP26"],
+                    ["GP15", "GP18",  "GP5", "GP29", "GP20", "GP22"],
+                    ["GP25", "GP23",   null, "GP16", "GP17", "GP19"]
                 ]
             }
         },
