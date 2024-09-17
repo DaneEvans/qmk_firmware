@@ -152,7 +152,7 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
   [4] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_MPRV, KC_MNXT), ENCODER_CCW_CW(RGB_VAD, RGB_VAI), ENCODER_CCW_CW(KC_RGHT, KC_LEFT), },
   [5] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_MPRV, KC_MNXT), ENCODER_CCW_CW(RGB_VAD, RGB_VAI), ENCODER_CCW_CW(KC_RGHT, KC_LEFT), },
   [6] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_MPRV, KC_MNXT), ENCODER_CCW_CW(RGB_VAD, RGB_VAI), ENCODER_CCW_CW(KC_RGHT, KC_LEFT), },
-  [7] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_MPRV, KC_MNXT), ENCODER_CCW_CW(RGB_VAD, RGB_VAI), ENCODER_CCW_CW(KC_RGHT, KC_LEFT), },
+//   [7] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_MPRV, KC_MNXT), ENCODER_CCW_CW(RGB_VAD, RGB_VAI), ENCODER_CCW_CW(KC_RGHT, KC_LEFT), },
 };
 #endif
 
@@ -170,13 +170,13 @@ void oled_render_layer_state(void) {
         oled_write_ln_P(PSTR("Layer: COLEMAKDH"),false);
         break;    
       case _LOWER:
-        oled_write_ln_P(PSTR("Layer: Numbers"),false);
+        oled_write_ln_P(PSTR("Layer: Lower"),false);
         break;
       case _RAISE:
-        oled_write_ln_P(PSTR("Layer: Symbols"),false);
+        oled_write_ln_P(PSTR("Layer: Raise"),false);
         break;
-      case _COMMAND:
-        oled_write_ln_P(PSTR("Layer: Command"),false);
+      case _ADJUST:
+        oled_write_ln_P(PSTR("Layer: Adjust"),false);
         break;
       case _NUMPAD:
         oled_write_ln_P(PSTR("Layer: Numpad"),false);
