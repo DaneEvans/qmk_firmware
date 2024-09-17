@@ -130,7 +130,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	// layer switcher 
 	[_SWITCH] = LAYOUT(\
 	//,-----------------------------------------------------.                    ,-----------------------------------------------------.
-	      TO(_DEFAULTS),TO(_LOWER),TO(_RAISE),TO(_COMMAND),TO(_NUMPAD),TO(_MOVE), 	    KC_NO,   TO(7),   KC_NO,   KC_NO,   KC_NO,   RESET,  \
+	      TO(_DEFAULTS),TO(_LOWER),TO(_RAISE),TO(_ADJUST),TO(_NUMPAD),KC_NO, 	    KC_NO,   TO(7),   KC_NO,   KC_NO,   KC_NO,   RESET,  \
 	//|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
 	      KC_NO,   KC_NO, KC_BRIU,   KC_NO,   KC_NO,   KC_NO, 						 KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, EEP_RST, \
 	//|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -149,7 +149,11 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
   [1] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_MPRV, KC_MNXT), ENCODER_CCW_CW(RGB_VAD, RGB_VAI), ENCODER_CCW_CW(KC_RGHT, KC_LEFT), },
   [2] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_MPRV, KC_MNXT), ENCODER_CCW_CW(RGB_VAD, RGB_VAI), ENCODER_CCW_CW(KC_RGHT, KC_LEFT), },
   [3] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_MPRV, KC_MNXT), ENCODER_CCW_CW(RGB_VAD, RGB_VAI), ENCODER_CCW_CW(KC_RGHT, KC_LEFT), },
-};
+  [4] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_MPRV, KC_MNXT), ENCODER_CCW_CW(RGB_VAD, RGB_VAI), ENCODER_CCW_CW(KC_RGHT, KC_LEFT), },
+  [5] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_MPRV, KC_MNXT), ENCODER_CCW_CW(RGB_VAD, RGB_VAI), ENCODER_CCW_CW(KC_RGHT, KC_LEFT), },
+  [6] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_MPRV, KC_MNXT), ENCODER_CCW_CW(RGB_VAD, RGB_VAI), ENCODER_CCW_CW(KC_RGHT, KC_LEFT), },
+  [7] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_MPRV, KC_MNXT), ENCODER_CCW_CW(RGB_VAD, RGB_VAI), ENCODER_CCW_CW(KC_RGHT, KC_LEFT), },
+
 #endif
 
 void oled_render_layer_state(void) {
@@ -177,9 +181,9 @@ void oled_render_layer_state(void) {
       case _NUMPAD:
         oled_write_ln_P(PSTR("Layer: Numpad"),false);
         break;	
-      case _MOVE:
-        oled_write_ln_P(PSTR("Layer: Movement"),false);
-        break;
+    //   case _MOVE:
+    //     oled_write_ln_P(PSTR("Layer: Movement"),false);
+    //     break;
       case _SWITCH:
         oled_write_ln_P(PSTR("Layer: Layer Switch"),false);
         break;		
