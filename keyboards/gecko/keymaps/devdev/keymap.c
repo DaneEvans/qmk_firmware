@@ -130,9 +130,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	// layer switcher 
 	[_SWITCH] = LAYOUT_split_3x6_5(\
 	//,-----------------------------------------------------.                    ,-----------------------------------------------------.
-	      TO(_DEFAULTS),TO(_LOWER),TO(_RAISE),TO(_ADJUST),TO(_NUMPAD),KC_NO, 	    KC_NO,   TO(7),   KC_NO,   KC_NO,   KC_NO,   RESET,  \
+	      TO(_DEFAULTS),TO(_LOWER),TO(_RAISE),TO(_ADJUST),TO(_NUMPAD),KC_NO, 	    KC_NO,   TO(7),   KC_NO,   KC_NO,   KC_NO,   KC_NO,  \
 	//|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-	      KC_NO,   KC_NO, KC_BRIU,   KC_NO,   KC_NO,   KC_NO, 						 KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, EEP_RST, \
+	      KC_NO,   KC_NO, KC_BRIU,   KC_NO,   KC_NO,   KC_NO, 						 KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_NO, \
 	//|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
 		KC_SYSTEM_SLEEP,   KC_NO, KC_BRID,   KC_NO,   KC_NO,   KC_NO, 						 KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, \
 	//|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|		  		
