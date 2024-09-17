@@ -25,7 +25,7 @@
     "layout_aliases": {
         "LAYOUT": "LAYOUT_split_3x6_5"
     },
-    "community_layouts": [ "split_3x5_5", "split_3x6_5" ],
+    // "community_layouts": [ "split_3x5_5", "split_3x6_5" ],
     "layouts": {
         "LAYOUT_split_3x5_5": {
             "layout": [
