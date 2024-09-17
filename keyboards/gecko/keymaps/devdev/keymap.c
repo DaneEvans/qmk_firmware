@@ -37,7 +37,7 @@ enum custom_keycodes {
     KC_LOWER,
     KC_RAISE,
     KC_ADJUST,
-    KC_D_MUTE,
+    // KC_D_MUTE,
 	KC_SMART_BSP
 };
 
@@ -105,7 +105,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_ADJUST] = LAYOUT_split_3x6_5(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-        QK_BOOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+      QK_BOOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI,KC_COLEMAKDH,KC_COLEMAK,            C(G(KC_LEFT)),KC_NO,KC_NO, C(G(KC_RGHT)), XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -156,6 +156,17 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 };
 #endif
 
+#ifdef OLED_DRIVER_ENABLE
+static void render_logo(void) {
+    static const char PROGMEM qmk_logo[] = {
+        0x80, 0x81, 0x82, 0x83, 0x84, 0x85, 0x86, 0x87, 0x88, 0x89, 0x8A, 0x8B, 0x8C, 0x8D, 0x8E, 0x8F, 0x90, 0x91, 0x92, 0x93, 0x94,
+        0xA0, 0xA1, 0xA2, 0xA3, 0xA4, 0xA5, 0xA6, 0xA7, 0xA8, 0xA9, 0xAA, 0xAB, 0xAC, 0xAD, 0xAE, 0xAF, 0xB0, 0xB1, 0xB2, 0xB3, 0xB4,
+        0xC0, 0xC1, 0xC2, 0xC3, 0xC4, 0xC5, 0xC6, 0xC7, 0xC8, 0xC9, 0xCA, 0xCB, 0xCC, 0xCD, 0xCE, 0xCF, 0xD0, 0xD1, 0xD2, 0xD3, 0xD4, 0x00
+    };
+
+    oled_write_P(qmk_logo, false);
+}
+
 void oled_render_layer_state(void) {
   char string [24]; 
   switch (get_highest_layer(default_layer_state|layer_state))
@@ -193,6 +204,7 @@ void oled_render_layer_state(void) {
         oled_write_ln(string, false);
     }
 }
+#endif
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	static uint8_t saved_mods   = 0;
@@ -239,17 +251,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 layer_off(_ADJUST);
             }
             return false;
-        case KC_D_MUTE:
-            if (record->event.pressed) {
+        // case KC_D_MUTE:
+        //     if (record->event.pressed) {
 
-                register_mods(MOD_RCTL);
-				register_mods(MOD_RSFT);
-                register_code(KC_M);
-            } else {
-                unregister_mods(MOD_RCTL);
-				unregister_mods(MOD_RSFT);
-                unregister_code(KC_M);
-            }
+        //         register_mods(MOD_RCTL);
+		// 		register_mods(MOD_RSFT);
+        //         register_code(KC_M);
+        //     } else {
+        //         unregister_mods(MOD_RCTL);
+		// 		unregister_mods(MOD_RSFT);
+        //         unregister_code(KC_M);
+        //     }
 		case KC_SMART_BSP:
             if (record->event.pressed) {
                 saved_mods = get_mods() & MOD_MASK_SHIFT;
