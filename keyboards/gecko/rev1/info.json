@@ -77,7 +77,7 @@
             "watchdog": true
         }
     },
-    "community_layouts": [ "split_3x5_3", "split_3x6_3" ],
+    // "community_layouts": [ "split_3x5_3", "split_3x6_3" ],
     "layouts": {
         "LAYOUT_split_3x5_5": {
             "layout": [
