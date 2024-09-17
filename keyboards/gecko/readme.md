@@ -1,5 +1,15 @@
 # Corne Keyboard (CRKBD)
 
+
+To build 
+```
+Open QMK WSL 
+
+cd qmk-firmware 
+qmk compile -kb gecko/rev1/standard -km default
+
+```
+
 ![Crkbd](https://user-images.githubusercontent.com/736191/40575636-6fba63a4-6123-11e8-9ca0-3f990f1f9f4c.jpg)
 
 ![Crkbd](https://user-images.githubusercontent.com/736191/40887871-0eead5dc-678a-11e8-9518-e3ad9e5d2bac.png)
