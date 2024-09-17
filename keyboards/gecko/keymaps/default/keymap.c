@@ -51,11 +51,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
         KC_LCTL,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_RSFT,
     //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                    KC_MUTE,   KC_X,  KC_LGUI, MO(_LOWER),     KC_SPC,       KC_ENT,   MO(_RAISE), KC_RALT,  MO(_SWITCH, KC_SLSH
+                    KC_MUTE,   KC_X,  KC_LGUI, MO(_LOWER),     KC_SPC,       KC_ENT,   MO(_RAISE), KC_RALT,  MO(_SWITCH, KC_SLSH \
                                         //`--------------------------'  `--------------------------'
     ),
 
-    [_COLEMAKDH] = LAYOUT( \
+    [_COLEMAKDH] = LAYOUT_split_3x6_5( \
     //,-----------------------------------------------------.                    ,-----------------------------------------------------.
         LT(_NUMPAD,KC_TAB),KC_Q,KC_W, KC_F,    KC_P,    KC_B,           LT(_SWITCH,KC_J),    KC_L,    KC_U,    KC_Y, KC_SCLN, KC_SMART_BSP,  \
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -67,7 +67,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                         //`--------------------------'  `--------------------------'
     ),
 
-    [_COLEMAK] = LAYOUT( \
+    [_COLEMAK] = LAYOUT_split_3x6_5( \
     //,-----------------------------------------------------.                    ,-----------------------------------------------------.
         LT(_NUMPAD,KC_TAB), 	KC_Q, 	 KC_W, 	  KC_F,    KC_P,    KC_B, 		LT(_SWITCH,KC_J),    KC_L,    KC_U,    KC_Y, KC_SCLN, KC_SMART_BSP,  \
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -115,7 +115,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                       //`--------------------------'  `--------------------------'
   )
 
-  	[_NUMPAD] = LAYOUT( \
+  	[_NUMPAD] = LAYOUT_split_3x6_5( \
 	//,-----------------------------------------------------.                    ,-----------------------------------------------------.
 	LT(0,KC_NO),   KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_NO, 					   KC_CIRC,   KC_7,   KC_8,   KC_9, KC_ASTR, KC_BSPC, \
 	//|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -213,26 +213,26 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case KC_LOWER:
             if (record->event.pressed) {
                 layer_on(_LOWER);
-                update_tri_layer(_LOWER, _RAISE, _COMMAND);
+                update_tri_layer(_LOWER, _RAISE, _ADJUST);
             } else {
                 layer_off(_LOWER);
-                update_tri_layer(_LOWER, _RAISE, _COMMAND);
+                update_tri_layer(_LOWER, _RAISE, _ADJUST);
             }
             return false;
         case KC_RAISE:
             if (record->event.pressed) {
                 layer_on(_RAISE);
-                update_tri_layer(_LOWER, _RAISE, _COMMAND);
+                update_tri_layer(_LOWER, _RAISE, _ADJUST);
             } else {
                 layer_off(_RAISE);
-                update_tri_layer(_LOWER, _RAISE, _COMMAND);
+                update_tri_layer(_LOWER, _RAISE, _ADJUST);
             }
             return false;
         case KC_ADJUST:
             if (record->event.pressed) {
-                layer_on(_COMMAND);
+                layer_on(_ADJUST);
             } else {
-                layer_off(_COMMAND);
+                layer_off(_ADJUST);
             }
             return false;
         case KC_D_MUTE:
