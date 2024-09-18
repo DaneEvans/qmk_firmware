@@ -30,7 +30,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NUM_ENCODERS 4
 
 #ifdef RGBLIGHT_ENABLE
-    #define RGB_DISABLE_WHEN_USB_SUSPENDED true
+    // #define RGB_DISABLE_WHEN_USB_SUSPENDED true
+    #define RGB_MATRIX_SLEEP 
 
     #define RGB_MATRIX_KEYPRESSES
     #define RGB_MATRIX_SOLID_REACTIVE_GRADIENT_MODE
