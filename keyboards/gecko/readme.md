@@ -10,6 +10,30 @@ qmk compile -kb gecko/rev1/standard -km default
 
 ```
 
+## Flashing 
+The reset keys have shifted. 
+On the left - use the Q key (Qwerty)
+On the right - Use the H key. 
+
+## TODO list 
+### QMK
+- Fix OLED counts 
+- Fix OLED positions in matrix
+- try a reactive effect . 
+- get default layers all working properly. 
+
+### PCB
+- Write the HW generation guides
+- Fix pin numbering 
+- Clear up comments 
+
+- BOM 
+
+
+
+
+
+
 ![Crkbd](https://user-images.githubusercontent.com/736191/40575636-6fba63a4-6123-11e8-9ca0-3f990f1f9f4c.jpg)
 
 ![Crkbd](https://user-images.githubusercontent.com/736191/40887871-0eead5dc-678a-11e8-9518-e3ad9e5d2bac.png)
