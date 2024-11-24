@@ -265,17 +265,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 layer_off(_ADJUST);
             }
             return false;
-        // case KC_D_MUTE:
-        //     if (record->event.pressed) {
+        case KC_TEAMS_MUTE:  // also discord
+            if (record->event.pressed) {
 
-        //         register_mods(MOD_RCTL);
-		// 		register_mods(MOD_RSFT);
-        //         register_code(KC_M);
-        //     } else {
-        //         unregister_mods(MOD_RCTL);
-		// 		unregister_mods(MOD_RSFT);
-        //         unregister_code(KC_M);
-        //     }
+                register_mods(MOD_RCTL);
+				register_mods(MOD_RSFT);
+                register_code(KC_M);
+            } else {
+                unregister_mods(MOD_RCTL);
+				unregister_mods(MOD_RSFT);
+                unregister_code(KC_M);
+            }
 		case KC_SMART_BSP:
             if (record->event.pressed) {
                 saved_mods = get_mods() & MOD_MASK_SHIFT;
